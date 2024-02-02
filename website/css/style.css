@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	background-color: #00006D;
+	color: #FFFFFF;
+}
+
+nav {
+	background-color: #1700A7;
+	width: 20%;
+	height: 100vh;
+	border-radius: 0 40px 40px 0;
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+#app-title-header {
+	padding-bottom: 20px;
+}
+
+.app-title {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.logo {
+	border-radius: 50%;
+	background-color: #878787;
+	width: 55px;
+	height: 55px;
+	display: inline;
+}
+
+nav h1 {
+	display: inline;
+	margin-left: 20px;
+	margin-top: -20px;
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 200;
+	font-size: 1.5rem;
+	letter-spacing: .04rem;
+}
