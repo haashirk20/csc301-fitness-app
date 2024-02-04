@@ -1,4 +1,6 @@
 def BMICalculator(age, weight, height):
+    # height stored in cm, weight in kg
+    height /= 100
     bmi = round(weight / height ** 2, 2)
     if age >= 19:
         if bmi < 18.5:
@@ -10,11 +12,12 @@ def BMICalculator(age, weight, height):
         else:
             return bmi, "Obesity"
     else:
-        return "Pediatrician"
+        # in order to interpret bmi for kids, need to know the percentiles for each sex and age
+        return bmi, "Pediatrician"
 
 
 def RFMCalculator(sex, height, waist_circumfrence):
-    height *= 100
+    # height stored in cm, waist_circumfrence stored in cm
     if sex == "male":
         rfm = round(64 - 20 * (height / waist_circumfrence), 2)
         if rfm < 2:
@@ -44,4 +47,5 @@ def RFMCalculator(sex, height, waist_circumfrence):
         else:
             return rfm, "Obese"
     else:
-        return None
+        # not sure what to do for this case. Can use default as male or female instead maybe.
+        return "No RFM available"
