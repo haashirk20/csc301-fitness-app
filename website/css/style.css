@@ -43,3 +43,28 @@ nav h1 {
 	font-size: 1.5rem;
 	letter-spacing: .04rem;
 }
+
+form {
+    display: block;
+}
+
+.inputBox{
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	outline:0;
+	border:0;
+	margin: 6px;
+	width: 90%;
+	height: 30px;
+}
+
+.log_container {
+	background-color: #1700A7;
+	height: 40%;
+	width: 30%;
+	border-radius: 10px;
+	margin: 15% 34%;
+	text-align: center;
+	padding: 1%;
+}
