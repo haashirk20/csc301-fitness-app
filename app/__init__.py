@@ -3,8 +3,12 @@ import flask
 import firebase_admin
 from firebase_admin import credentials, db
 
-app = flask.Flask(__name__)
+from flask_bcrypt import Bcrypt
 
+app = flask.Flask(__name__)
+app.secret_key = "batman"  # TODO: put in .env file
+bcrypt = Bcrypt(app)
+# app.config["SESSION_COOKIE_SECURE"] = True
 
 FIREBASE_ADMIN_KEY_PATH = os.path.join(
     os.getcwd(), "csc301-fitness-app-firebase-admin-1.json"
