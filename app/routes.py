@@ -1,16 +1,36 @@
 from app import app
+from flask import request, session, redirect, url_for
+import re
+from app import models
 
 
-@app.route("/hello")
+@app.route("/")
 def home():
-    user = get_authenticated_user()
-    if user:
-        return f"Hey, {user['email']}! You are authenticated."
+    if "user_id" in session:
+        return f"Hey, {session['user_id']}! You are authenticated."
     else:
         return "Hey, anonymous user! You are not authenticated."
 
 
-def get_authenticated_user():
-    # Implement the logic to check authentication
-    # ...
-    pass
+@app.route("/api/login", methods=["POST"])
+def login():
+    if "user_id" in session:
+        return {"message": "user already signed in"}
+
+    user_email = request.args.get("email", "").lower()
+    user_pass = request.args.get("password", "")
+
+    if user_email == "":
+        return {"message": "email missing"}, 400
+    elif user_pass == "":
+        return {"message": "password missing"}, 400
+
+    user = models.User.login(user_email, user_pass)
+
+    if user:
+        session["user_id"] = user
+        return redirect(url_for("home"))
+    else:
+        # we don't have to specify which one of email or password failed,
+        # since that could be a security risk (reveals if email exists)
+        return {"message": "incorrect email or password"}, 401
