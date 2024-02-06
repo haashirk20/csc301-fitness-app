@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	background-color: #00006D;
+	color: #FFFFFF;
+}
+
+nav {
+	background-color: #1700A7;
+	width: 20%;
+	height: 100vh;
+	border-radius: 0 40px 40px 0;
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+#app-title-header {
+	margin-top: 10px;
+}
+
+.app-title {
+	margin-left: 25px;
+	margin-top: 25px;
+}
+
+.logo {
+	border-radius: 50%;
+	background-color: #878787;
+	width: 62px;
+	height: 62px;
+	margin-bottom: -30px;
+}
+
+nav h1 {
+	display: inline;
+	margin-left: 25px;
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 200;
+	font-size: 1.6rem;
+	letter-spacing: .04rem;
+}
+
+nav ul {
+	margin-top: 150px;
+	margin-left: 75px;
+	font-weight: 200;
+}
+
+nav li {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-size: 5.5rem;
+	margin-bottom: -48.5px;
+	margin-left: 5px;
+}
+
+.menu-item {
+	position: relative;
+	font-size: 1.15rem;
+	top: -20px;
+	right: -18px;
+}
+
+form {
+    display: block;
+}
+
+.inputBox{
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	outline:0;
+	border:0;
+	margin: 6px;
+	width: 90%;
+	height: 30px;
+}
+
+.log_container {
+	background-color: #1700A7;
+	height: 40%;
+	width: 30%;
+	border-radius: 10px;
+	margin: 15% 34%;
+	text-align: center;
+	padding: 1%;
+}
