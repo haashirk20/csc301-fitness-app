@@ -9,8 +9,10 @@ def login():
     if "user" in session:
         return {"message": "user already signed in"}
 
-    user_name = request.args.get("name", "")
-    user_pass = request.args.get("password", "")
+    data = request.get_json()
+
+    user_name = data.get("name", "")
+    user_pass = data.get("password", "")
 
     if user_name == "":
         return {"message": "name missing"}, 400
@@ -34,10 +36,12 @@ def signup():
     if "user_id" in session:
         return {"message": "user already signed in"}
 
-    user_email = request.args.get("email", "").lower()
-    user_name = request.args.get("name", "")
-    user_age = request.args.get("age", "")
-    user_pass = request.args.get("password", "")
+    data = request.get_json()
+
+    user_email = data.get("email").lower()
+    user_name = data.get("name", "")
+    user_age = data.get("age", "")
+    user_pass = data.get("password", "")
 
     if user_name == "":
         return {"message": "name missing"}, 400

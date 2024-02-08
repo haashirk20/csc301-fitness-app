@@ -22,7 +22,7 @@ class User:
                 {
                     "email": self.email,
                     "hash": self.hash,
-                    "age": self.age,
+                    "age": int(self.age),
                     "name": self.name,
                 }
             )
