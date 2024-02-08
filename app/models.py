@@ -12,6 +12,10 @@ class User:
         self.password = password
         if len(self.password) > 0:
             self.hash = bcrypt.generate_password_hash(password, 10).decode()
+        self.calories_needed = 0
+        self.calories_remaining = 0
+        self.sex = ""
+
 
     def signup(self):
         ref = db.reference("users")
@@ -24,11 +28,14 @@ class User:
                     "hash": self.hash,
                     "age": self.age,
                     "name": self.name,
+                    "calories_needed": self.calories_needed,
+                    "calories_remaining": self.calories_remaining
                 }
             )
             return True
         else:
             return False
+
 
     # checks whether user exists and password is correct
     # returns True on success, False on failure
@@ -45,18 +52,55 @@ class User:
             return True
         else:
             return False
+    
+
+    def set_calories(self, calories):
+        user_ref = db.reference("users").child(self.id)
+        user_ref.update({'calories_needed': calories, "calories_remaining": calories})
+        self.calories_needed = calories
+        self.calories_remaining = calories
+
+
+    def calories_reduce(self, calories_used):
+        user_ref = db.reference("users").child(self.id)
+        calories_remaining = user_ref.get().get("calories_remaining") - calories_used
+        user_ref.update({"calories_remaining": calories_remaining})
+        self.calories_remaining = calories_remaining
+
+
+    def calories_reset(self):
+        user_ref = db.reference("users").child(self.id)
+        caloried_needed = user_ref.get().get("calories_needed")
+        user_ref.update({"calories_remaining": caloried_needed})
+        self.calories_needed = caloried_needed
+        self.calories_remaining = caloried_needed
+
+
+    def get_calories_needed(self):
+        self.calories_needed = db.reference("users").child(self.id).get()["calories_needed"]
+        return self.calories_needed
+    
+
+    def get_calories_remaining(self):
+        self.calories_remaining = db.reference("users").child(self.id).get()["calories_remaining"]
+        return self.calories_remaining
+
 
     def get_id(self):
         return self.id
 
+
     def get_name(self):
         return self.name
+
 
     def get_email(self):
         return self.email
 
+
     def get_age(self):
         return self.age
+
 
     @staticmethod
     def get_all_users():

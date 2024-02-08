@@ -29,10 +29,10 @@ def calculate_calorie(age, sex, height, weight, activity="sedentary", goal="main
     else:
         return "unidentified activity level"
     if goal == "maintain":
-        return calorie_count
+        return int(calorie_count)
     elif goal == "gain":
-        return calorie_count + 500
+        return int(calorie_count + 500)
     elif goal == "lose":
-        return (80/100) * calorie_count
+        return int((80/100) * calorie_count)
     else:
         return "unidentified goal"
