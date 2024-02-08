@@ -3,13 +3,15 @@ from firebase_admin import db
 
 
 class User:
-    def __init__(self, email, hash):
+    def __init__(self, email, hash, name, age):
+        self.name = name
+        self.age = age
         self.email = email
         self.hash = bcrypt.generate_password_hash(hash, 10)
 
     def save_to_db(self):
         ref = db.reference("users")
-        new_user_ref = ref.push({"email": self.email, "hash": self.hash})
+        new_user_ref = ref.push({"email": self.email, "hash": self.hash, "age": self.age, "name": self.name})
 
         return new_user_ref.key
 

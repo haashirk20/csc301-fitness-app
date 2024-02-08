@@ -42,11 +42,14 @@ def signup():
         return {"message": "user already signed in"}
 
     user_email = request.args.get("email", "").lower()
+    user_name = request.args.get("name", "")
+    user_age = request.args.get("age", "")
     user_pass = request.args.get("password", "")
 
-    #TODO implement birthday storing
-    #user_bday = request.args.get("birthday", "")
-
+    if user_name == "":
+        return {"message": "name missing"}, 400
+    elif user_age == "":
+        return {"message": "age missing"}, 400
     if user_email == "":
         return {"message": "email missing"}, 400
     elif user_pass == "":
@@ -59,4 +62,4 @@ def signup():
     user = models.User(user_email, user_pass)
     user.save_to_db()
 
-    return redirect(url_for("home"))
+    return {"message": "user created"}, 200
