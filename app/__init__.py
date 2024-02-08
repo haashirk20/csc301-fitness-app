@@ -2,10 +2,12 @@ import os
 import flask
 import firebase_admin
 from firebase_admin import credentials, db
+from flask_cors import CORS
 
 from flask_bcrypt import Bcrypt
 
 app = flask.Flask(__name__)
+CORS(app)
 app.secret_key = "batman"  # TODO: put in .env file
 bcrypt = Bcrypt(app)
 # app.config["SESSION_COOKIE_SECURE"] = True
