@@ -1,13 +1,13 @@
 from app import app
 from flask import request, session, redirect, url_for
 import re
-from app import models
+from app import models, calculators
 
 
 @app.route("/api/login", methods=["POST"])
 def login():
     if "user" in session:
-        return {"message": "user already signed in"}
+        return {"message": "user already signed in"}, 200
 
     data = request.get_json()
 
@@ -34,7 +34,7 @@ def login():
 @app.route("/api/signup", methods=["POST"])
 def signup():
     if "user_id" in session:
-        return {"message": "user already signed in"}
+        return {"message": "user already signed in"}, 400
 
     data = request.get_json()
 
@@ -64,3 +64,23 @@ def signup():
         return {"message": "user created"}, 200
     else:
         return {"message": "user already exists"}, 400
+
+
+@app.route("/api/bmi", methods=["POST"])
+def bmi():
+    if "user" not in session:
+        return {"message": "user not signed in"}, 401
+    
+    data = request.get_json()
+
+    user_height = data.get("height", "")
+    user_weight = data.get("weight", "")
+
+    if user_weight == "":
+        return {"message": "weight missing"}, 400
+    elif user_height == "":
+        return {"message": "height missing"}, 400
+
+    bmi = calculators.BMICalculator(float(user_weight), float(user_height))
+
+    return {"message": "success", "BMI": bmi}, 200
