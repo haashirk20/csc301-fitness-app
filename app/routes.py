@@ -59,7 +59,7 @@ def signup():
     if not re.match(r"[^@]+@[^@]+\.[^@]+", user_email):
         return {"message": "invalid email"}, 400
 
-    user = models.User(user_email, user_pass)
+    user = models.User(user_email, user_pass, user_name, user_age)
     user.save_to_db()
 
     return {"message": "user created"}, 200
