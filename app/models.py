@@ -1,5 +1,6 @@
 from app import bcrypt
 from firebase_admin import db
+import json
 
 
 class User:
@@ -11,7 +12,8 @@ class User:
 
     def save_to_db(self):
         ref = db.reference("users")
-        new_user_ref = ref.push({"email": self.email, "hash": self.hash, "age": self.age, "name": self.name})
+        data = json.dumps({"email": self.email, "hash": self.hash, "age": self.age, "name": self.name})
+        new_user_ref = ref.push(data)
 
         return new_user_ref.key
 
