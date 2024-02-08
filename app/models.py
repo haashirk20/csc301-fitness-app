@@ -8,12 +8,11 @@ class User:
         self.name = name
         self.age = age
         self.email = email
-        self.hash = bcrypt.generate_password_hash(hash, 10)
+        self.hash = bcrypt.generate_password_hash(hash, 10).decode()
 
     def save_to_db(self):
         ref = db.reference("users")
-        data = json.dumps({"email": self.email, "hash": self.hash, "age": self.age, "name": self.name})
-        new_user_ref = ref.push(data)
+        new_user_ref = ref.push({"email": self.email, "hash": self.hash, "age": self.age, "name": self.name})
 
         return new_user_ref.key
 
