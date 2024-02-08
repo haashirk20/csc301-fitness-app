@@ -11,7 +11,7 @@
         <div class="log_container"> 
             <h1>SIGN UP</h1> 
             <img src="images/logo.png" class="logo">
-            <form action=""> 
+            <form method="POST" action="login.html"> 
                 <input style="font-size: 20px;"
                        type="text" 
                        id="first"
@@ -22,11 +22,22 @@
                 <br>
 
                 <input style="font-size: 20px;"
-                       type="text"
+                       type="email"
                        id="email" 
                        name="email"
                        class="inputBox"
                        placeholder=" Email" required>
+
+                <br>
+
+                <label style="font-size: 20px;" for="age">Age:</label>
+                <input style="font-size: 20px; width: 20%;"
+                       type="number" 
+                       id="age" 
+                       name="age"
+                       class="inputBox"
+                       placeholder="25"
+                       min="1" max="99" required>
 
                 <br>
 
@@ -36,6 +47,8 @@
                        name="password"
                        class="inputBox"
                        placeholder=" Password" required> 
+
+                <input type="submit" hidden />
       
             </form> 
         </div> 
