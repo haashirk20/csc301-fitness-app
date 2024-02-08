@@ -87,3 +87,37 @@ form {
 	text-align: center;
 	padding: 1%;
 }
+
+.right-of-menu {
+	margin-left: 25%;
+	position: fixed;
+}
+
+.graph-container {
+	background-color: #1700A7;
+	border-radius: 20px;
+	margin-top: 175px;
+	padding: 10px 50px 50px 50px;
+}
+
+.graph-container h2, .tracker h2 {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 100;
+	font-size: 1.1rem;
+	text-decoration: none;
+}
+
+.graph {
+	height: 200px;
+	width: 550px;
+	border: solid #fff;
+}
+
+.tracker {
+	background-color: #1700A7;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+	padding: 10px 10px 10px 20px;
+	margin-right: 40px;
+}
