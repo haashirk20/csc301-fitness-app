@@ -10,12 +10,14 @@
         
         <div class="log_container"> 
             <h1>SIGN UP</h1> 
-            <img src="images/logo.png" class="logo">
-            <form method="POST" action="login.html"> 
+
+            <img src="images/logo.png" class="logo2">
+            
+            <form id="suForm"> 
                 <input style="font-size: 20px;"
                        type="text" 
-                       id="first"
-                       name="first" 
+                       id="name"
+                       name="name" 
                        class="inputBox"
                        placeholder=" Username" required> 
 
@@ -36,7 +38,7 @@
                        id="age" 
                        name="age"
                        class="inputBox"
-                       placeholder="25"
+                       placeholder="1-99"
                        min="1" max="99" required>
 
                 <br>
@@ -51,6 +53,8 @@
                 <input type="submit" hidden />
       
             </form> 
+
+            <script src="js/posts.js"></script>
         </div> 
         
     </body>

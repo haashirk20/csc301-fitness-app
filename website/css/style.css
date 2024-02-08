@@ -34,6 +34,13 @@ nav {
 	margin-bottom: -30px;
 }
 
+.logo2 {
+	border-radius: 50%;
+	background-color: #878787;
+	width: 62px;
+	height: 62px;
+}
+
 nav h1 {
 	display: inline;
 	margin-left: 25px;
