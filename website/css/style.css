@@ -18,30 +18,49 @@ nav {
 }
 
 #app-title-header {
-	padding-bottom: 20px;
+	margin-top: 10px;
 }
 
 .app-title {
-	margin-left: 20px;
-	margin-top: 20px;
+	margin-left: 25px;
+	margin-top: 25px;
 }
 
 .logo {
 	border-radius: 50%;
 	background-color: #878787;
-	width: 55px;
-	height: 55px;
-	display: inline;
+	width: 62px;
+	height: 62px;
+	margin-bottom: -30px;
 }
 
 nav h1 {
 	display: inline;
-	margin-left: 20px;
-	margin-top: -20px;
+	margin-left: 25px;
 	font-family: Helvetica, Arial, "sans-serif";
 	font-weight: 200;
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 	letter-spacing: .04rem;
+}
+
+nav ul {
+	margin-top: 150px;
+	margin-left: 75px;
+	font-weight: 200;
+}
+
+nav li {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-size: 5.5rem;
+	margin-bottom: -48.5px;
+	margin-left: 5px;
+}
+
+.menu-item {
+	position: relative;
+	font-size: 1.15rem;
+	top: -20px;
+	right: -18px;
 }
 
 form {
@@ -49,9 +68,9 @@ form {
 }
 
 .inputBox{
-	border-radius:15px;
 	-moz-border-radius:15px;
 	-webkit-border-radius:15px;
+	border-radius:15px;
 	outline:0;
 	border:0;
 	margin: 6px;
