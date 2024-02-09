@@ -31,7 +31,7 @@
 		<div class="graph-container">
 			<h2>BMI Calculator</h2>
 			
-			<form id="bmiForm">
+			<form id="bmiForm" method="post">
 				<label for="height">Height (in cm):</label>
 				<input type="text" id="height" name="weight"><br><br>
 				<label for="height">Weight (in kg):</label>
@@ -46,13 +46,13 @@
 		<div class="graph-container">
 			<h2>Calorie Calculator</h2>
 			
-			<form id="caloriesForm">
+			<form id="caloriesForm" method="post">
 				<label for="age">Age:</label>
 				<input type="text" id="age" name="age"><br><br>
 				<label>Sex:</label><br>
 				<input type="radio" id="male" name="sex" value="male"> <label for="male">Male</label>
 				<input type="radio" id="female" name="sex" value="female"> <label for="female">Female</label><br><br>
-				<label for="height">Height (in cm):</label>
+				<label for="height">Height (in cm):</label>f
 				<input type="text" id="height2" name="height"><br><br>
 				<label for="weight">Weight (in kg):</label>
 				<input type="text" id="weight2" name="weight"><br><br>
@@ -63,9 +63,9 @@
 				<input type="radio" id="very_active" name="activity" value="very_active"> <label for="very_active">Very Active</label><br>
 				<input type="radio" id="extra_active" name="activity" value="extra_active"> <label for="extra_active">Extra Active</label><br><br>
 				<label>Goal:</label><br>
-				<input type="radio" id="maintain" name="activity" value="maintain"> <label for="maintain">Maintain Weight</label><br>
-				<input type="radio" id="lose" name="activity" value="lose"> <label for="lose">Lose Weight</label><br>
-				<input type="radio" id="gain" name="activity" value="gain"> <label for="gain">Gain Weight</label><br><br>
+				<input type="radio" id="maintain" name="goal" value="maintain"> <label for="maintain">Maintain Weight</label><br>
+				<input type="radio" id="lose" name="goal" value="lose"> <label for="lose">Lose Weight</label><br>
+				<input type="radio" id="gain" name="goal" value="gain"> <label for="gain">Gain Weight</label><br><br>
 				<input type="submit">
 			</form>
 			
