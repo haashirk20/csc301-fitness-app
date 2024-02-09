@@ -1,6 +1,7 @@
 const signup_Form = document.getElementById('suForm');
+const errM = document.getElementById('errMessage');
 
-if (signup_Form) {
+if (signup_Form && errM) {
     signup_Form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const formData = new FormData(signup_Form).entries()
@@ -11,6 +12,20 @@ if (signup_Form) {
         });
     
         const result = await response.json();
-        console.log(result)
+        const code = await response.status
+
+        if (code == 200) {
+            window.location.replace("login.html");
+
+        } else {
+            console.log(code)
+            if (errM.style.display === "none") {
+                errM.style.display = "block";
+            }
+            errM.innerHTML = "Error: " + result["message"];
+            
+        }
+        
+        
     });
 }

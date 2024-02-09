@@ -1,4 +1,5 @@
 const login_Form = document.getElementById('liForm');
+const errM = document.getElementById('errMessage');
 
 if (login_Form) {
     login_Form.addEventListener('submit', async function (e) {
@@ -11,6 +12,18 @@ if (login_Form) {
         });
     
         const result = await response.json();
-        console.log(result)
+        const code = await response.status
+
+        if (code == 200) {
+            window.location.replace("home.html");
+
+        } else {
+            console.log(code)
+            if (errM.style.display === "none") {
+                errM.style.display = "block";
+            }
+            errM.innerHTML = "Error: " + result["message"];
+            
+        }
     });
 }
