@@ -15,13 +15,13 @@ if (bmi_Form) {
 		const responseCode = result["code"];
 		
 		const result_element = document.getELementById('result');
-		if responseCode = 401 {
+		if (responseCode == 401) {
 			//user not signed in
 			result_element.innerHTML = "Please sign in to use this service."
-		} else if responseCode = 400 {
+		} else if (responseCode == 400) {
 			//missing data
 			result_element.innerHTML = "Please enter a valid height and weight."
-		} else if responseCode = 200 {
+		} else if (responseCode == 200) {
 			//success
 			result_element.innerHTML = "Your BMI is: " + responseCode["BMI"][0] + ".\n This is a " + responseCode["BMI"][1] + " weight."
 		}
