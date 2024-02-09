@@ -24,7 +24,6 @@ if (bmi_Form) {
 		} else if responseCode = 200 {
 			//success
 			result_element.innerHTML = "Your BMI is: " + responseCode["BMI"][0] + ".\n This is a " + responseCode["BMI"][1] + " weight."
-			//future goal: add health category?
 		}
     });
 }
