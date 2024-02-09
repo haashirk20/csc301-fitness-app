@@ -9,7 +9,7 @@ if (signup_Form && errM) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(formData)),
-			credentials: include,
+			credentials: "include",
         });
     
         const result = await response.json();
