@@ -6,10 +6,17 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 
 app = flask.Flask(__name__)
+# Emergency settings in case cookies arent being set in browser
+app.config.update(
+    # SESSION_COOKIE_PATH="/",
+    # SESSION_COOKIE_SECURE="False",
+    # SESSION_COOKIE_SAMESITE="None",
+    # SESSION_COOKIE_HTTPONLY="False",
+    # SESSION_COOKIE_DOMAIN="127.0.0.1:5000",
+)
 CORS(app, supports_credentials=True)
 app.secret_key = "batman"  # TODO: put in .env file
 bcrypt = Bcrypt(app)
-# app.config["SESSION_COOKIE_SECURE"] = True
 
 FIREBASE_ADMIN_KEY_PATH = os.path.join(
     os.getcwd(), "csc301-fitness-app-firebase-admin-1.json"
