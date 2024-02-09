@@ -12,7 +12,7 @@ if (bmi_Form) {
     
         const result = await response.json();
         
-		const responseCode = result["code"];
+		const responseCode = await response.status;
 		
 		const result_element = document.getELementById('result');
 		if (responseCode == 401) {
