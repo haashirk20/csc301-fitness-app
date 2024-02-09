@@ -23,7 +23,7 @@ if (bmi_Form) {
 			result_element.innerHTML = "Please enter a valid height and weight."
 		} else if responseCode = 200 {
 			//success
-			result_element.innerHTML = "Your BMI is: " + responseCode["BMI"] + "."
+			result_element.innerHTML = "Your BMI is: " + responseCode["BMI"][0] + ".\n This is a " + responseCode["BMI"][1] + " weight."
 			//future goal: add health category?
 		}
     });
