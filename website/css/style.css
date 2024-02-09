@@ -60,7 +60,12 @@ nav li {
 	position: relative;
 	font-size: 1.15rem;
 	top: -20px;
-	right: -18px;
+	right: 0px;
+}
+
+#menu a {
+	color: #fff;
+	text-decoration: none;
 }
 
 form {
@@ -120,4 +125,9 @@ form {
 	display: inline-block;
 	padding: 10px 10px 10px 20px;
 	margin-right: 40px;
+}
+
+label {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 100;
 }
