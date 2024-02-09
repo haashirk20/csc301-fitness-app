@@ -14,7 +14,7 @@ if (bmi_Form) {
         
 		const responseCode = await response.status;
 		
-		const result_element = document.getELementById('result');
+		const result_element = document.getElementById('result');
 		if (responseCode == 401) {
 			//user not signed in
 			result_element.innerHTML = "Please sign in to use this service."
