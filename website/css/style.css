@@ -15,6 +15,7 @@ nav {
 	border-radius: 0 40px 40px 0;
 	float: left;
 	margin: 0 20px 0 0;
+	position: fixed;
 }
 
 #app-title-header {
@@ -102,13 +103,14 @@ form {
 
 .right-of-menu {
 	margin-left: 25%;
-	position: fixed;
+	position: absolute;
+	padding-bottom: 50px;
 }
 
 .graph-container {
 	background-color: #1700A7;
 	border-radius: 20px;
-	margin-top: 175px;
+	margin-top: 50px;
 	padding: 10px 50px 10px 50px;
 }
 
