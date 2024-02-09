@@ -109,7 +109,7 @@ form {
 	background-color: #1700A7;
 	border-radius: 20px;
 	margin-top: 175px;
-	padding: 10px 50px 50px 50px;
+	padding: 10px 50px 10px 50px;
 }
 
 .graph-container h2, .tracker h2 {
@@ -137,4 +137,8 @@ form {
 label {
 	font-family: Helvetica, Arial, "sans-serif";
 	font-weight: 100;
+}
+
+.graph-container form {
+	margin-bottom: 20px;
 }
