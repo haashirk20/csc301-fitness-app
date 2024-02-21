@@ -6,16 +6,15 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 
 app = flask.Flask(__name__)
-# Emergency settings in case cookies arent being set in browser
+
 app.config.update(
-    # SESSION_COOKIE_PATH="/",
-    # SESSION_COOKIE_SECURE="False",
-    # SESSION_COOKIE_SAMESITE="None",
-    # SESSION_COOKIE_HTTPONLY="False",
-    # SESSION_COOKIE_DOMAIN="127.0.0.1:5000",
+    SESSION_COOKIE_SECURE="False",
+    SESSION_COOKIE_SAMESITE="None",
 )
-CORS(app, supports_credentials=True)
-app.secret_key = "batman"  # TODO: put in .env file
+CORS(app, origins=["http://127.0.0.1:5501"], supports_credentials=True)
+
+SECRET_KEY = "batman"  # TODO: put in .env file
+app.secret_key = SECRET_KEY
 bcrypt = Bcrypt(app)
 
 FIREBASE_ADMIN_KEY_PATH = os.path.join(
