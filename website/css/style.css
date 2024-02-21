@@ -15,6 +15,7 @@ nav {
 	border-radius: 0 40px 40px 0;
 	float: left;
 	margin: 0 20px 0 0;
+	position: fixed;
 }
 
 #app-title-header {
@@ -32,6 +33,13 @@ nav {
 	width: 62px;
 	height: 62px;
 	margin-bottom: -30px;
+}
+
+.logo2 {
+	border-radius: 50%;
+	background-color: #878787;
+	width: 62px;
+	height: 62px;
 }
 
 nav h1 {
@@ -60,7 +68,12 @@ nav li {
 	position: relative;
 	font-size: 1.15rem;
 	top: -20px;
-	right: -18px;
+	right: 0px;
+}
+
+#menu a {
+	color: #fff;
+	text-decoration: none;
 }
 
 form {
@@ -86,4 +99,48 @@ form {
 	margin: 15% 34%;
 	text-align: center;
 	padding: 1%;
+}
+
+.right-of-menu {
+	margin-left: 25%;
+	position: absolute;
+	padding-bottom: 50px;
+}
+
+.graph-container {
+	background-color: #1700A7;
+	border-radius: 20px;
+	margin-top: 50px;
+	padding: 10px 50px 10px 50px;
+}
+
+.graph-container h2, .tracker h2 {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 100;
+	font-size: 1.1rem;
+	text-decoration: none;
+}
+
+.graph {
+	height: 200px;
+	width: 550px;
+	border: solid #fff;
+}
+
+.tracker {
+	background-color: #1700A7;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+	padding: 10px 10px 10px 20px;
+	margin-right: 40px;
+}
+
+label {
+	font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 100;
+}
+
+.graph-container form {
+	margin-bottom: 20px;
 }

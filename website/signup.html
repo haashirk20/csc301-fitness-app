@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login_page</title>
+<title>Sign Up</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -10,23 +10,36 @@
         
         <div class="log_container"> 
             <h1>SIGN UP</h1> 
-            <img src="images/logo.png" class="logo">
-            <form action=""> 
+
+            <img src="images/logo.png" class="logo2">
+            
+            <form id="suForm"> 
                 <input style="font-size: 20px;"
                        type="text" 
-                       id="first"
-                       name="first" 
+                       id="name"
+                       name="name" 
                        class="inputBox"
                        placeholder=" Username" required> 
 
                 <br>
 
                 <input style="font-size: 20px;"
-                       type="text"
+                       type="email"
                        id="email" 
                        name="email"
                        class="inputBox"
                        placeholder=" Email" required>
+
+                <br>
+
+                <label style="font-size: 20px;" for="age">Age:</label>
+                <input style="font-size: 20px; width: 20%;"
+                       type="number" 
+                       id="age" 
+                       name="age"
+                       class="inputBox"
+                       placeholder="1-99"
+                       min="1" max="99" required>
 
                 <br>
 
@@ -36,8 +49,14 @@
                        name="password"
                        class="inputBox"
                        placeholder=" Password" required> 
+
+                <input type="submit" hidden />
       
             </form> 
+
+            <p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
+
+            <script src="js/signup.js"></script>
         </div> 
         
     </body>

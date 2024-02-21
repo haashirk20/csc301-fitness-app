@@ -1,7 +1,7 @@
 def BMICalculator(weight, height):
     # height stored in cm, weight in kg
     height /= 100
-    bmi = round(weight / height ** 2, 2)
+    bmi = round(weight / height**2, 2)
     if bmi < 18.5:
         return bmi, "Underweight"
     elif 18.5 <= bmi < 25:

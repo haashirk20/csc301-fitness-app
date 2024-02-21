@@ -2,20 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login_page</title>
+<title>Log In</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+    a:link {
+      color: #00A76A;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #A7003D;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #90A700;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+</style>
 </head>
 
     <body>
         
         <div class="log_container"> 
             <h1>LOG IN</h1> 
-            <img src="images/logo.png" class="logo">
-            <form action=""> 
+            <img src="images/logo.png" class="logo2">
+            <form id="liForm"> 
                 <input style="font-size: 20px;"
                        type="text" 
-                       id="first"
-                       name="first" 
+                       id="name"
+                       name="name" 
                        class="inputBox"
                        placeholder=" Username" required> 
 
@@ -27,8 +44,15 @@
                        name="password"
                        class="inputBox"
                        placeholder=" Password" required> 
+
+                <input type="submit" hidden />
       
             </form> 
+
+            <p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
+
+            <script src="js/login.js"></script>
+
             <p style="font-size: 20px;">Not registered?  
                   <a href="signup.html" 
                    style="text-decoration: none;"> 
