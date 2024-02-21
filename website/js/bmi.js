@@ -56,7 +56,7 @@ if (calories_Form) {
         result_element.innerHTML = "Please enter a valid numeric age."
       } else if (result.message == "sex invalid") {
         result_element.innerHTML = "Please select a sex."
-      } else if (result.message == "height invalid") {
+      } else if (result.message == "height missing") {
         result_element.innerHTML = "Please enter a valid numeric height in centimeters."
       } else if (result.message == "weight missing") {
         result_element.innerHTML = "Please enter a valid numeric weight in kilograms."
