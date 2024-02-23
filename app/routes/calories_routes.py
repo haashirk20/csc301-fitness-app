@@ -1,69 +1,7 @@
+from flask import request, session
 from app import app
-from flask import request, session, redirect, url_for
-import re
-from app import models, calorie, calculators
-
-
-@app.route("/api/login", methods=["POST"])
-def login():
-    if "user" in session:
-        return {"message": "user already signed in"}, 200
-
-    data = request.get_json()
-
-    user_name = data.get("name", "")
-    user_pass = data.get("password", "")
-
-    if user_name == "":
-        return {"message": "name missing"}, 400
-    elif user_pass == "":
-        return {"message": "password missing"}, 400
-
-    user = models.User(name=user_name, password=user_pass)
-
-    if user.login():
-        session["user"] = user.__dict__  # save user model or user id?
-        return {"message": "user signed in"}, 200
-    else:
-        # we don't have to specify which one of email or password failed,
-        # since that could be a security risk (reveals if email exists)
-        return {"message": "incorrect email or password"}, 401
-
-
-# basic signup route
-@app.route("/api/signup", methods=["POST"])
-def signup():
-    if "user_id" in session:
-        return {"message": "user already signed in"}
-
-    data = request.get_json()
-
-    user_email = data.get("email").lower()
-    user_name = data.get("name", "")
-    user_age = data.get("age", "")
-    user_pass = data.get("password", "")
-
-    if user_name == "":
-        return {"message": "name missing"}, 400
-    elif user_age == "":
-        return {"message": "age missing"}, 400
-    if user_email == "":
-        return {"message": "email missing"}, 400
-    elif user_pass == "":
-        return {"message": "password missing"}, 400
-
-    # check if email is valid
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", user_email):
-        return {"message": "invalid email"}, 400
-
-    user = models.User(
-        name=user_name, password=user_pass, email=user_email, age=user_age
-    )
-
-    if user.signup():
-        return {"message": "user created"}, 200
-    else:
-        return {"message": "user already exists"}, 400
+from app.models import User
+from app.utils import calorie
 
 
 @app.route("/api/calories", methods=["GET", "POST"])
@@ -71,7 +9,7 @@ def calories():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
-    user = models.User(id=session["user"]["id"], name=session["user"]["name"])
+    user = User.User(id=session["user"]["id"], name=session["user"]["name"])
 
     if request.method == "GET":
         user_calories_needed = user.get_calories_needed()
@@ -133,7 +71,7 @@ def calories_reduce():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
-    user = models.User(id=session["user"]["id"], name=session["user"]["name"])
+    user = User.User(id=session["user"]["id"], name=session["user"]["name"])
 
     data = request.get_json()
     calories_used = data.get("calories", "")
@@ -149,7 +87,7 @@ def calories_reset():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
-    user = models.User(id=session["user"]["id"], name=session["user"]["name"])
+    user = User.User(id=session["user"]["id"], name=session["user"]["name"])
     user.calories_reset()  # sets user.calories_needed and user.calories_remaining
 
     return {
@@ -157,23 +95,3 @@ def calories_reset():
         "caloriesNeeded": user.get_calories_needed(),
         "caloriesRemaining": user.get_calories_remaining(),
     }, 200
-
-
-@app.route("/api/bmi", methods=["POST"])
-def bmi():
-    if "user" not in session:
-        return {"message": "user not signed in"}, 401
-
-    data = request.get_json()
-
-    user_height = data.get("height", "")
-    user_weight = data.get("weight", "")
-
-    if user_weight == "":
-        return {"message": "weight missing"}, 400
-    elif user_height == "":
-        return {"message": "height missing"}, 400
-
-    bmi = calculators.BMICalculator(float(user_weight), float(user_height))
-
-    return {"message": "success", "BMI": bmi}, 200
