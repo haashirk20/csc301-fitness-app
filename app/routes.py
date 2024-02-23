@@ -143,6 +143,29 @@ def calories_reduce():
 
     return {"caloriesRemaining": user.get_calories_remaining()}, 200
 
+# Created as replacement for calories_reduce, takes food name
+@app.route("/api/calories/reduce/food", methods=["POST"])
+def food_reduce():
+    if "user" not in session:
+        return {"message": "user not signed in"}, 401
+
+    user = models.User(id=session["user"]["id"], name=session["user"]["name"])
+
+    data = request.get_json()
+
+    query = data.get("food_name", "")
+    api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
+    response = request.get(api_url, headers={'X-Api-Key': 'YOUR_API_KEY'})
+    if response.status_code != 200:
+        return {"message": "food not found"}, 400
+    
+    # need to parse the response to get the calories
+    # this is placeholder until response format is known
+    calories_used = response.json()['calories']
+
+    user.calories_reduce(int(calories_used))
+
+    return {"caloriesRemaining": user.get_calories_remaining()}, 200
 
 @app.route("/api/calories/reset", methods=["POST"])
 def calories_reset():
