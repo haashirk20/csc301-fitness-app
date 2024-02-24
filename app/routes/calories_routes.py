@@ -2,6 +2,7 @@ from flask import request, session
 from app import app
 from app.models import User
 from app.utils import calorie
+import json
 
 
 @app.route("/api/calories", methods=["GET", "POST"])
@@ -61,9 +62,24 @@ def calories():
             user_activity,
             user_goal,
         )
-
-        user.set_calories(calories)
         return {"message": "success", "caloriesNeeded": calories}, 200
+
+
+## Calorie limit set
+@app.route("/api/calories/limit", methods=["POST"])
+def calories_set():
+    if "user" not in session:
+        return {"message": "user not signed in"}, 401
+
+    user = User.User(id=session["user"]["id"], name=session["user"]["name"])
+
+    data = request.get_json()
+    calories_needed = data.get("calories", "")
+    if calories_needed == "":
+        return {"message": "calories invalid"}, 400
+    user.set_calories(int(calories_needed))
+
+    return {"caloriesNeeded": user.get_calories_needed()}, 200
 
 
 @app.route("/api/calories/reduce", methods=["POST"])
@@ -87,13 +103,13 @@ def food_reduce():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
-    user = models.User(id=session["user"]["id"], name=session["user"]["name"])
-
     data = request.get_json()
 
     query = data.get("food_name", "")
+    with open("app/utils/api.json") as f:
+        api_key = json.load(f).get("api_key")
     api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
-    response = request.get(api_url, headers={'X-Api-Key': 'YOUR_API_KEY'})
+    response = request.get(api_url, headers={'X-Api-Key': api_key})
     if response.status_code != 200:
         return {"message": "food not found"}, 400
     
@@ -101,9 +117,10 @@ def food_reduce():
     # this is placeholder until response format is known
     calories_used = response.json()['calories']
 
-    user.calories_reduce(int(calories_used))
+    # reduce cals if needed
+    #user.calories_reduce(int(calories_used))
 
-    return {"caloriesRemaining": user.get_calories_remaining()}, 200
+    return {"calories": int(calories_used)}, 200
 
 @app.route("/api/calories/reset", methods=["POST"])
 def calories_reset():
