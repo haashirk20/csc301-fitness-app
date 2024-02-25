@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calorie Counting</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <div class="app-title">
+        <img src="images/logo.png" class="logo" />
+        <span id="app-title-header"><h1>App Title</h1></span>
+      </div>
+
+      <div id="menu">
+        <ul>
+          <li>
+            <span class="menu-item"><a href="home.html">Home</a></span>
+          </li>
+          <li>
+            <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
+          </li>
+          <li><span class="menu-item">Placeholder</span></li>
+          <li><span class="menu-item">Placeholder</span></li>
+          <li><span class="menu-item">Placeholder</span></li>
+          <li><span class="menu-item">Placeholder</span></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="right-of-menu">
+      <div class="graph-container">
+        <h2>Caloric Intake Calculator</h2>
+
+        <form id="caloriesForm" method="post">
+          <label for="age">Age:</label>
+          <input type="text" id="age" name="age" /><br /><br />
+          <label>Sex:</label><br />
+          <input type="radio" id="male" name="sex" value="male" />
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="sex" value="female" />
+          <label for="female">Female</label><br /><br />
+          <label for="height">Height (in cm):</label>
+          <input type="text" id="height2" name="height" /><br /><br />
+          <label for="weight">Weight (in kg):</label>
+          <input type="text" id="weight2" name="weight" /><br /><br />
+          <label>Activity:</label><br />
+          <input
+            type="radio"
+            id="sedentary"
+            name="activity"
+            value="sedentary"
+          />
+          <label for="sedentary">Sedentary</label><br />
+          <input
+            type="radio"
+            id="lightly_active"
+            name="activity"
+            value="lightly_active"
+          />
+          <label for="lightly_active">Lightly Active</label><br />
+          <input
+            type="radio"
+            id="moderately_active"
+            name="activity"
+            value="moderately_active"
+          />
+          <label for="moderately_active">Moderately Active</label><br />
+          <input
+            type="radio"
+            id="very_active"
+            name="activity"
+            value="very_active"
+          />
+          <label for="very_active">Very Active</label><br />
+          <input
+            type="radio"
+            id="extra_active"
+            name="activity"
+            value="extra_active"
+          />
+          <label for="extra_active">Extra Active</label><br /><br />
+          <label>Goal:</label><br />
+          <input type="radio" id="maintain" name="goal" value="maintain" />
+          <label for="maintain">Maintain Weight</label><br />
+          <input type="radio" id="lose" name="goal" value="lose" />
+          <label for="lose">Lose Weight</label><br />
+          <input type="radio" id="gain" name="goal" value="gain" />
+          <label for="gain">Gain Weight</label><br /><br />
+          <input type="submit" />
+        </form>
+
+        <h2 id="calories_result">Your recommended caloric intake is:</h2>
+      </div>
+
+      <div class="graph-container">
+        <h2>Food Calorie Calculator</h2>
+
+        <form id="foodForm" method="post">
+            <p>Enter a type of food to determine how many calories is in a serving of it.</p>
+            <label for="food">Food: </label>
+            <input type="text" id="food" name="food"><br><br>
+            <input type="submit" />
+        </form>
+
+        <h2 id="food_result">Food calories:</h2>
+      </div>
+
+      <div class="graph-container">
+        <h2>Calorie Goal Setter</h2>
+
+        <form id="goalForm" method="post">
+            <p>Enter your daily caloric intake goal to set or update it.</p>
+            <label for="goal">Goal: </label>
+            <input type="text" id="goal" name="goal"><br><br>
+            <input type="submit" />
+        </form>
+
+        <h2 id="goal_result">Current goal:</h2>
+      </div>
+
+      <div class="graph-container">
+        <h2>Calorie Tracker</h2>
+        <form id="resetForm" method=""post>
+            <p>Reset your counted calories at the start of each day.</p>
+            <input type="submit" value="Reset"/>
+        </form>
+
+        <form id="trackerForm" method="post">
+            <p>Then use this form to add calories to your tracked calories for today.</p>
+            <label for="goal">Calories: </label>
+            <input type="text" id="goal" name="goal"><br><br>
+            <input type="submit" />
+        </form>
+
+        <h2 id="tracker_result">Total calories eaten today: </h2>
+        <h2 id="over_under"></h2>
+      </div>
+
+    </main>
+  </body>
+
+  <script src="js/bmi.js"></script>
+</html>
