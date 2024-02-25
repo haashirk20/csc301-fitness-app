@@ -45,9 +45,13 @@ def steps_week():
         return {"message": "user not signed in"}, 401
 
     user = User.User(id=session["user"]["id"])
-    week_steps = steps_utils.get_last_steps(user, 7)
+    result = steps_utils.get_last_steps(user, 7)
 
-    return {"message": "success", "steps": json.dumps(week_steps)}, 200
+    return {
+        "message": "success",
+        "steps": json.dumps(result["steps"]),
+        "totalSteps": result["total_steps"],
+    }, 200
 
 
 @app.route("/api/steps/month")
@@ -57,6 +61,10 @@ def steps_month():
 
     user = User.User(id=session["user"]["id"])
     days_passed = datetime.date.today().day
-    week_steps = steps_utils.get_last_steps(user, days_passed)
+    result = steps_utils.get_last_steps(user, days_passed)
 
-    return {"message": "success", "steps": json.dumps(week_steps)}, 200
+    return {
+        "message": "success",
+        "steps": json.dumps(result["steps"]),
+        "totalSteps": result["total_steps"],
+    }, 200

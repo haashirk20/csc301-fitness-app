@@ -5,6 +5,7 @@ def get_last_steps(user, days):
     all_steps = user.get_steps()
     steps_arr = []
     dates_str = []
+    total_steps = 0
     today_date = datetime.date.today()
 
     # It's counting down not up to add today's date last in array for chronological order
@@ -19,8 +20,9 @@ def get_last_steps(user, days):
         else:
             steps = all_steps.get(date_str)
 
+        total_steps += steps
         steps_arr.append({"date": date_str, "day": date.strftime("%A"), "steps": steps})
 
     user.steps_reset(dates_str)
 
-    return steps_arr
+    return {"steps": steps_arr, "total_steps": total_steps}
