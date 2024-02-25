@@ -30,9 +30,9 @@
 	
 	<main class="right-of-menu">
 		<div class="graph-container" style="width:600px">
-			<h2>Step history</h2>
+			<h2>Weekly Step History</h2>
 			
-			<canvas id="stepsChart" style="width:100%;max-width:600px;padding-bottom: 30px;" ></canvas>
+			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 30px;" ></canvas>
 
             <form id="stForm">
                 <label for="steps">Stepcount (today):</label>
@@ -40,7 +40,11 @@
                 <input type="submit" hidden/>
             </form>
 
-            
+            <h2 id="step_dsp">Steps today: </h2>
+
+            <h2>Monthly Step History</h2>
+
+            <canvas id="monthChart" style="width:100%;max-width:600px;;" ></canvas>
 
             <script src="js/steps.js"></script>
 			
