@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
 	<meta charset="UTF-8">
-	<title>Fitness App</title>
+	<title>BMI Calculator</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -20,7 +21,7 @@
 				<li><span class="menu-item"><a href="home.html">Home</a></span></li>
 				<li><span class="menu-item"><a href="bmi.html">BMI Calculator</a></span></li>
 				<li><span class="menu-item">Placeholder</span></li>
-				<li><span class="menu-item"><a href="steps.html">Step Tracker</a></span>
+				<li><span class="menu-item"><a href="steps.html">Step tracker</a></span></li>
 				<li><span class="menu-item">Placeholder</span></li>
 				<li><span class="menu-item">Placeholder</span></li>
 			</ul>
@@ -28,12 +29,21 @@
 	</nav>
 	
 	<main class="right-of-menu">
-		<div class="graph-container">
-			<h2>Graph Overview</h2>
+		<div class="graph-container" style="width:600px">
+			<h2>Step history</h2>
 			
-			<div class="graph">
-				
-			</div>
+			<canvas id="stepsChart" style="width:100%;max-width:600px;padding-bottom: 30px;" ></canvas>
+
+            <form id="stForm">
+                <label for="steps">Stepcount (today):</label>
+                <input type="number"  id="steps" name="steps"/><br />
+                <input type="submit" hidden/>
+            </form>
+
+            
+
+            <script src="js/steps.js"></script>
+			
 		</div>
 		<br>
 		
