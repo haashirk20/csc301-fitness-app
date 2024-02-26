@@ -15,6 +15,8 @@ def steps_add():
     steps = data.get("steps", "")
     if steps == "":
         return {"message": "steps missing"}, 400
+    if int(steps) < 1:
+        return {"message": "steps must be greater than 0"}, 400
 
     user = User.User(id=session["user"]["id"])
     updated_steps = user.steps_add(int(steps))
@@ -32,9 +34,13 @@ def steps_today():
 
     today_date = datetime.date.today().isoformat()
     if today_date not in all_steps:
-        steps = user.reset([today_date])
+        steps = user.steps_reset([today_date])
     else:
         steps = all_steps.get(today_date)
+
+    # As requested by frontend
+    if steps == 0:
+        steps = None
 
     return {"message": "success", "steps": steps}, 200
 

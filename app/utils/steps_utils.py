@@ -21,6 +21,11 @@ def get_last_steps(user, days):
             steps = all_steps.get(date_str)
 
         total_steps += steps
+
+        # As requested by frontend
+        if steps == 0:
+            steps = None
+
         steps_arr.append({"date": date_str, "day": date.strftime("%A"), "steps": steps})
 
     user.steps_reset(dates_str)
