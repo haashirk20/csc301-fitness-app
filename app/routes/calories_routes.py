@@ -98,8 +98,8 @@ def calories_reduce():
     return {"caloriesRemaining": user.get_calories_remaining()}, 200
 
 # Created as replacement for calories_reduce, takes food name
-@app.route("/api/calories/reduce/food", methods=["POST"])
-def food_reduce():
+@app.route("/api/calories/food", methods=["POST"])
+def food():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
@@ -122,7 +122,7 @@ def food_reduce():
 
     return {"calories": int(calories_used)}, 200
 
-@app.route("/api/calories/reset", methods=["POST"])
+@app.route("/api/calories/reset", methods=["GET"])
 def calories_reset():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
