@@ -1,4 +1,5 @@
 from flask import request, session
+import requests
 from app import app
 from app.models import User
 from app.utils import calorie
@@ -107,15 +108,17 @@ def food():
 
     query = data.get("food_name", "")
     with open("app/utils/api.json") as f:
-        api_key = json.load(f).get("api_key")
+        api_key = json.load(f).get("APIKEY")
+        if api_key is None:
+            return {"message": "api key not found"}, 500
     api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
-    response = request.get(api_url, headers={'X-Api-Key': api_key})
-    if response.status_code != 200:
-        return {"message": "food not found"}, 400
+    response = requests.get(api_url, headers={'X-Api-Key': api_key})
+    if response.status_code != requests.codes.ok:
+        return {"message": "food not found"}, response.status_code
     
     # need to parse the response to get the calories
     # this is placeholder until response format is known
-    calories_used = response.json()['calories']
+    calories_used = response.json()[0].get("calories")
 
     # reduce cals if needed
     #user.calories_reduce(int(calories_used))
