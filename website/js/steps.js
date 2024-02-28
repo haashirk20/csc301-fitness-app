@@ -65,7 +65,16 @@ const step_dsp = document.getElementById('step_dsp');
 
 step_dsp.style.display = "none";
 
+
 /* if (input_Form && step_dsp) {
+    const week_data = await fetch('http://127.0.0.1:5000//api/steps/week', {
+            method: 'GET',
+			credentials: "include",
+    });
+
+    const result = await week_data.json();
+    const w_steps = await result["steps"]
+
     input_Form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const formData = new FormData(login_Form).entries()
