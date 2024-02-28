@@ -51,7 +51,11 @@ def steps_week():
         return {"message": "user not signed in"}, 401
 
     user = User.User(id=session["user"]["id"])
-    result = steps_utils.get_last_steps(user, 7)
+
+    # Number of days passed since last Sunday
+    dayCode = datetime.date.today().weekday()
+    days_passed = (dayCode - 6) % 7 + 1
+    result = steps_utils.get_last_steps(user, days_passed)
 
     return {
         "message": "success",
