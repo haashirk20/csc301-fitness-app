@@ -53,17 +53,18 @@ def sleep_add():
     else:
         date_slept = slept_at.date()
 
+    # Get hours slept
     sleep_duration = (awake_at - slept_at).total_seconds()
     hours = int(sleep_duration // 3600)
     minutes = int((sleep_duration % 3600) // 60)
+    hours_decimal = round(hours + (minutes / 60), 2)
 
     user = User.User(id=session["user"]["id"])
-    result = user.set_sleep_record(date_slept, hours, minutes)
+    result = user.set_sleep_record(date_slept, hours_decimal)
 
     return {
         "message": "success",
-        "hours": result["hours"],
-        "minutes": result["minutes"],
+        "hours": result,
     }, 200
 
 
@@ -77,17 +78,15 @@ def sleep_today():
 
     yesterday_date = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
     if yesterday_date not in sleep_records:
-        result = user.set_sleep_record(yesterday_date, 0, 0)
+        result = user.set_sleep_record(yesterday_date, 0.0)
     else:
         result = sleep_records.get(yesterday_date)
 
-    hours = None if result["hours"] == 0 else result["hours"]
-    minutes = None if result["minutes"] == 0 else result["minutes"]
+    hours = None if result["hours"] == 0.0 else result["hours"]
 
     return {
         "message": "success",
         "hours": hours,
-        "minutes": minutes,
     }, 200
 
 
@@ -107,7 +106,7 @@ def sleep_week():
         "message": "success",
         "sleep": json.dumps(result["sleep"]),
         "hoursAvg": result["hours_avg"],
-        "minutesAvg": result["minutes_avg"],
+        "hoursTotal": result["hours_total"],
     }, 200
 
 
@@ -127,5 +126,5 @@ def sleep_month():
         "message": "success",
         "sleep": json.dumps(result["sleep"]),
         "hoursAvg": result["hours_avg"],
-        "minutesAvg": result["minutes_avg"],
+        "hoursTotal": result["hours_total"],
     }, 200

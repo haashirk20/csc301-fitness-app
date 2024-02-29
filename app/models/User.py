@@ -79,18 +79,18 @@ class User:
         print("set", sleep_obj["goal"])
         return sleep_obj["goal"]
 
-    def set_sleep_record(self, date_slept, hours, minutes):
+    def set_sleep_record(self, date_slept, hours):
         user_ref = db.reference("users").child(self.id).child("sleep")
         sleep_obj = user_ref.get() or {}
         sleep_obj.setdefault("records", {})
-        sleep_obj["records"][str(date_slept)] = {"hours": hours, "minutes": minutes}
+        sleep_obj["records"][str(date_slept)] = hours
         user_ref.update(sleep_obj)
         return sleep_obj["records"][str(date_slept)]
 
     def get_sleep_records(self):
         user_ref = db.reference("users").child(self.id).child("sleep")
         sleep_obj = user_ref.get()
-        return sleep_obj.get("records")
+        return sleep_obj.get("records") or {}
 
     def get_sleep_goal(self):
         user_ref = db.reference("users").child(self.id).child("sleep")
