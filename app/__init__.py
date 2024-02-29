@@ -14,7 +14,7 @@ app.config.update(
 CORS(
     app,
     # below is the front end url
-    origins=["http://127.0.0.1:5500, http://127.0.0.1:5501"],
+    origins=["http://127.0.0.1:5500", "http://127.0.0.1:5501"],
     supports_credentials=True,
 )
 
