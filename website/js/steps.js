@@ -66,8 +66,8 @@ const step_dsp = document.getElementById('step_dsp');
 step_dsp.style.display = "none";
 
 
-/* if (input_Form && step_dsp) {
-    const week_data = await fetch('http://127.0.0.1:5000//api/steps/week', {
+if (input_Form && step_dsp) {
+    const week_data = await fetch('http:/127.0.0.1:5000/api/steps/week', {
             method: 'GET',
 			credentials: "include",
     });
@@ -75,32 +75,8 @@ step_dsp.style.display = "none";
     const result = await week_data.json();
     const w_steps = await result["steps"]
 
-    input_Form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const formData = new FormData(login_Form).entries()
-        const response = await fetch('http://127.0.0.1:5000/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(formData)),
-			credentials: "include",
-        });
-    
-        const result = await response.json();
-        const code = await response.status
-
-        if (code == 200) {
-            window.location.replace("home.html");
-
-        } else {
-            console.log(code)
-            if (errM.style.display == "none") {
-                errM.style.display = "block";
-            }
-            errM.innerHTML = "Error: " + result["message"];
-            
-        }
-    });
-} */
+    console.log(w_steps)
+}
 
 new Chart("weekChart", {
     type: "line",
