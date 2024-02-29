@@ -22,7 +22,7 @@
 				<li><span class="menu-item"><a href="bmi.html">BMI Calculator</a></span></li>
 				<li><span class="menu-item">Placeholder</span></li>
 				<li><span class="menu-item"><a href="steps.html">Step tracker</a></span></li>
-				<li><span class="menu-item">Placeholder</span></li>
+				<li><span class="menu-item"><a href="sleep.html">Sleep tracker</a></span></li>
 				<li><span class="menu-item">Placeholder</span></li>
 			</ul>
 		</div>
@@ -32,13 +32,15 @@
 		<div class="graph-container" style="width:600px">
 			<h2>Weekly Step History</h2>
 			
-			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 30px;" ></canvas>
+			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
 
             <form id="stForm">
                 <label for="steps">Add steps for today:</label>
                 <input type="number"  id="steps" name="steps"/><br />
                 <input type="submit" hidden/>
             </form>
+
+			<p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
 
             <h2 id="step_dsp">Steps today: </h2>
 
