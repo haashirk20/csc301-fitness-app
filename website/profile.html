@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Fitness App</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	
+	<nav>
+        <div class="app-title">
+            <img src="images/logo.png" class="logo" />
+            <span id="app-title-header"><h1>App Title</h1></span>
+        </div>
+
+        <div id="menu">
+            <ul>
+            <li>
+                <span class="menu-item"><a href="home.html">Home</a></span>
+            </li>
+            <li><span class="menu-item"><a href="profile.html">Edit Profile</a></span></li>
+            <li>
+                <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
+            </li>
+            <li><span class="menu-item"><a href="calories.html">Calorie Counter</a></span></li>
+            <li><span class="menu-item">Placeholder</span></li>
+            <li><span class="menu-item">Placeholder</span></li>
+            </ul>
+        </div>
+    </nav>
+	
+	<main class="right-of-menu">
+		<div class="graph-container">
+            <h2>Current Profile Information</h2>
+
+            <p id="username">Username: Loading...</p>
+            <p id="useremail">Email Address: Loading...</p>
+            <p id="userage">Age: Loading...</p>
+
+
+            <h2>Update Profile Information</h2>
+            <p>Leave fields blank if you do not wish to update them.</p>
+            <form id="profileForm" method="post">
+              <label for="name">New username:</label>
+              <input type="text" id="name" name="name" /><br /><br />
+              <label for="name">New email address:</label>
+              <input type="text" id="email" name="email" /><br /><br />
+              <label for="name">New age:</label>
+              <input type="text" id="age" name="age" /><br /><br />
+            
+              <input type="submit" />
+            </form>
+
+            <h2 id="profile_result"></h2>
+          </div>
+		
+	</main>
+	
+</body>
+<script src="js/profile.js"></script>
+</html>
