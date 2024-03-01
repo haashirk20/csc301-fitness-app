@@ -32,7 +32,7 @@ def previous_sleeps(user, days):
             "hours_total": 0.0,
         }
 
-    hours_avg = total_hours / days_accounted_for
+    hours_avg = round(total_hours / days_accounted_for, 2)
 
     return {
         "sleep": sleep_arr,

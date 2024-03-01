@@ -8,6 +8,8 @@ import json
 
 @app.route("/api/sleep/goal/", methods=["GET", "POST"])
 def sleep_goal():
+    print("hahshfd")
+
     if "user" not in session:
         return {"message": "user not signed in"}, 401
 
@@ -26,7 +28,7 @@ def sleep_goal():
         return {"message": "success"}, 200
 
 
-@app.route("/api/sleep/", methods=["POST"])
+@app.route("/api/sleep", methods=["POST"])
 def sleep_add():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
@@ -82,7 +84,7 @@ def sleep_today():
     else:
         result = sleep_records.get(yesterday_date)
 
-    hours = None if result["hours"] == 0.0 else result["hours"]
+    hours = None if result == 0.0 else result
 
     return {
         "message": "success",
@@ -102,6 +104,20 @@ def sleep_week():
     days_passed = (dayCode - 6) % 7
     result = sleep_utils.previous_sleeps(user, days_passed)
 
+    # As requested by frontend, complete week even if null
+    for i in range(7 - days_passed):
+        result["sleep"].append(
+            {
+                "date": (
+                    datetime.date.today() + datetime.timedelta(days=i)
+                ).isoformat(),
+                "day": (datetime.date.today() + datetime.timedelta(days=i)).strftime(
+                    "%A"
+                ),
+                "hours": None,
+            }
+        )
+
     return {
         "message": "success",
         "sleep": json.dumps(result["sleep"]),
@@ -118,9 +134,27 @@ def sleep_month():
     user = User.User(id=session["user"]["id"])
 
     # Number of days passed since last Sunday
-    dayCode = datetime.date.today().weekday()
     days_passed = datetime.date.today().day
+    days_passed = 30
     result = sleep_utils.previous_sleeps(user, days_passed - 1)
+
+    return {
+        "message": "success",
+        "sleep": json.dumps(result["sleep"]),
+        "hoursAvg": result["hours_avg"],
+        "hoursTotal": result["hours_total"],
+    }, 200
+
+
+@app.route("/api/sleep/days/<int:days>")
+def sleep_days(days):
+    if "user" not in session:
+        return {"message": "user not signed in"}, 401
+
+    user = User.User(id=session["user"]["id"])
+
+    # Number of days passed since last Sunday
+    result = sleep_utils.previous_sleeps(user, days)
 
     return {
         "message": "success",
