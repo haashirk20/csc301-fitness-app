@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biometric Calculator</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+  <link rel="stylesheet" href="css/w3custom_style.css"/>
 </head>
 
-<body>
+<body class="w3-theme-d4">
   <!-- Sidebar -->
-  <nav class="w3-sidebar w3-bar-block w3-blue w3-collapse w3-top" style="z-index:3;width:250px" id="Sidebar">
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left" style="width: 300px;" id="Sidebar">
+    <button class="w3-bar-item w3-button w3-hide-large" onclick="w3_close()">Close &times;</button>
     <div class="app-title">
       <img src="images/logo.png" class="logo" />
       <span id="app-title-header"><h1>App Title</h1></span>
@@ -36,8 +37,9 @@
   <!-- Sidebar Controls for Small Screens -->
 
   <!-- Main Page Content -->
-  <main class="right-of-menu">
-    <div class="graph-container">
+  <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
+  <main class="w3-container w3-mobile">
+    <div class="w3-container w3-round-large w3-theme">
       <h2>BMI Calculator</h2>
 
       <form id="bmiForm" method="post">
@@ -51,7 +53,7 @@
       <h2 id="result">Your BMI is:</h2>
     </div>
 
-    <div class="graph-container">
+    <div class="w3-container w3-mobile">
       <h2>Calorie Calculator</h2>
 
       <form id="caloriesForm" method="post">
@@ -133,12 +135,11 @@
 
 <script>
   function w3_open() {
-  document.getElementById("mySidebar").style.width = "100%";
-  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("Sidebar").style.display = "block";
 }
 
 function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("Sidebar").style.display = "none";
 }
 </script>
 <script src="js/bmi.js"></script>
