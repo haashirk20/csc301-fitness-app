@@ -2,7 +2,7 @@ from flask import request, session
 from app import app
 from app.models import User
 
-@app.route('/profile', methods=['GET'])
+@app.route('/api/profile', methods=['GET'])
 def profile():
     if 'user' not in session:
         return {'message': 'user not signed in'}, 401
@@ -11,9 +11,9 @@ def profile():
     user_profile = user.get_profile()
 
     # Not including sex for now
-    return {'name': user_profile[0], 'email': user_profile[1], 'age': str(user_profile[2])}
+    return {'message':'success', 'name': user_profile[0], 'email': user_profile[1], 'age': str(user_profile[2])}, 200
 
-@app.route('profile', methods=['POST'])
+@app.route('/api/profile', methods=['POST'])
 def set_profile():
     if 'user' not in session:
         return {'message': 'user not signed in'}, 401
