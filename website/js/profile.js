@@ -1,26 +1,3 @@
-const username = document.getElementById('username');
-const useremail = document.getElementById('useremail');
-const userage = document.getElementById('userage');
-
-if (username && useremail && userage) {
-    const result_element = document.getElementById("profile_result")
-
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://127.0.0.1:5000/api/profile");
-    xhr.send();
-    xhr.responseType = "json";
-    xhr.onload = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        const result = xhr.response;
-        username.innerHTML = "Username: " + result.name;
-        useremail.innerHTML = "Email: " + result.email;
-        userage.innerHTML = "Age: " + result.age;
-    } else {
-        result_element.innerHTML = "Error loading account data: " + xhr.response.message
-    }
-    };
-}
-
 const profile_Form = document.getElementById('profileForm');
 
 if (profile_Form) {
@@ -49,3 +26,29 @@ if (profile_Form) {
     }
   });
 }
+
+const username = document.getElementById('username');
+const useremail = document.getElementById('useremail');
+const userage = document.getElementById('userage');
+
+if (username && useremail && userage) {
+    const result_element = document.getElementById("profile_result")
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open("GET", "http://127.0.0.1:5000/api/profile");
+    xhr.send();
+    xhr.responseType = "json";
+    xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        const result = xhr.response;
+        username.innerHTML = "Username: " + result.name;
+        useremail.innerHTML = "Email: " + result.email;
+        userage.innerHTML = "Age: " + result.age;
+    } else {
+        result_element.innerHTML = "Error loading account data: " + xhr.response.message
+    }
+    };
+}
+
+
