@@ -50,6 +50,21 @@ class User:
             return True
         else:
             return False
+        
+    def get_profile(self):
+        return self.name, self.email, self.age, self.sex
+    
+    def set_profile(self, name, email, age, sex):
+        user_ref = db.reference("users").child(self.id)
+        #if name, email, age or sex is empty, do not update
+        if name:
+            user_ref.update({"name": name})
+        if email:
+            user_ref.update({"email": email})
+        if age:
+            user_ref.update({"age": int(age)})
+        # if sex:
+        #     user_ref.update({"sex": sex})
 
     def set_calories(self, calories):
         user_ref = db.reference("users").child(self.id)
