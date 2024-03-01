@@ -123,11 +123,11 @@ async function updateGoals() {
     });
 
     const result = await week_data.json();
-    const d_sleep = JSON.parse(result["hours"]);
+    const d_sleep = JSON.parse(result["goal"]);
 
     if (d_sleep) {
       if (tody_dsp.style.display === "none") {
-        yest_dsp.style.display = "block";
+        tody_dsp.style.display = "block";
     }
     tody_dsp.innerHTML = "Sleep goal: " + d_sleep;
     }
@@ -143,7 +143,7 @@ if (input_Form && errM) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(Object.fromEntries(formData)),
-    credentials: "include",
+        credentials: "include",
       });
   
       const result = await response.json();
