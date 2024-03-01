@@ -1,131 +1,148 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biometric Calculator</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biometric Calculator</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+  <link rel="stylesheet" href="css/theme.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
 
-  <body>
-    <nav>
-      <div class="app-title">
-        <img src="images/logo.png" class="logo" />
-        <span id="app-title-header"><h1>App Title</h1></span>
-      </div>
+<body class="w3-theme-d4">
+  <!-- Sidebar -->
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left w3-col m3" style="width: 300px;" id="Sidebar">
+    <button class="w3-bar-item w3-button w3-hide-large" onclick="w3_close()">Close &times;</button>
+    <div class="app-title">
+      <img src="images/logo.png" class="logo" />
+      <span id="app-title-header"><h1>App Title</h1></span>
+    </div>
 
-      <!-- Sidebar -->
-      <div id="menu">
-        <ul>
-          <li>
-            <span class="menu-item"><a href="home.html">Home</a></span>
-          </li>
-          <li>
-            <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
-          </li>
-          <li><span class="menu-item">Placeholder</span></li>
-          <li><span class="menu-item">Placeholder</span></li>
-          <li><span class="menu-item">Placeholder</span></li>
-          <li><span class="menu-item">Placeholder</span></li>
-        </ul>
-      </div>
-    </nav>
+    <div id="menu">
+      <ul>
+        <li>
+          <span class="menu-item"><a href="home.html">Home</a></span>
+        </li>
+        <li>
+          <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
+        </li>
+        <li><span class="menu-item">Placeholder</span></li>
+        <li><span class="menu-item">Placeholder</span></li>
+        <li><span class="menu-item">Placeholder</span></li>
+        <li><span class="menu-item">Placeholder</span></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Main Page Content -->
-    <main class="right-of-menu">
-      <div class="graph-container">
-        <h2>BMI Calculator</h2>
+  <!-- Main Page Content -->
+  <div class="w3-col" style="width:25%">
+    <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
+  </div>
+  <main class="w3-container w3-col w3-mobile" style="width:50%">
+    <div class="w3-container w3-round-large w3-theme w3-section">
+      <h2>BMI Calculator</h2>
 
-        <form id="bmiForm" method="post">
-          <label for="height">Height (in cm):</label>
-          <input type="text" id="height" name="height" /><br /><br />
-          <label for="height">Weight (in kg):</label>
-          <input type="text" id="weight" name="weight" /><br /><br />
-          <input type="submit" />
-        </form>
+      <form id="bmiForm" method="post">
+        <label for="height">Height (in cm):</label>
+        <input type="text" id="height" name="height" /><br /><br />
+        <label for="height">Weight (in kg):</label>
+        <input type="text" id="weight" name="weight" /><br /><br />
+        <input type="submit" />
+      </form>
 
-        <h2 id="result">Your BMI is:</h2>
-      </div>
+      <h2 id="result">Your BMI is:</h2>
+    </div>
 
-      <div class="graph-container">
-        <h2>Calorie Calculator</h2>
+    <div class="w3-container w3-round-large w3-theme w3-section">
+      <h2>Calorie Calculator</h2>
 
-        <form id="caloriesForm" method="post">
-          <label for="age">Age:</label>
-          <input type="text" id="age" name="age" /><br /><br />
-          <label>Sex:</label><br />
-          <input type="radio" id="male" name="sex" value="male" />
-          <label for="male">Male</label>
-          <input type="radio" id="female" name="sex" value="female" />
-          <label for="female">Female</label><br /><br />
-          <label for="height">Height (in cm):</label>
-          <input type="text" id="height2" name="height" /><br /><br />
-          <label for="weight">Weight (in kg):</label>
-          <input type="text" id="weight2" name="weight" /><br /><br />
-          <label>Activity:</label><br />
-          <input
-            type="radio"
-            id="sedentary"
-            name="activity"
-            value="sedentary"
-          />
-          <label for="sedentary">Sedentary</label><br />
-          <input
-            type="radio"
-            id="lightly_active"
-            name="activity"
-            value="lightly_active"
-          />
-          <label for="lightly_active">Lightly Active</label><br />
-          <input
-            type="radio"
-            id="moderately_active"
-            name="activity"
-            value="moderately_active"
-          />
-          <label for="moderately_active">Moderately Active</label><br />
-          <input
-            type="radio"
-            id="very_active"
-            name="activity"
-            value="very_active"
-          />
-          <label for="very_active">Very Active</label><br />
-          <input
-            type="radio"
-            id="extra_active"
-            name="activity"
-            value="extra_active"
-          />
-          <label for="extra_active">Extra Active</label><br /><br />
-          <label>Goal:</label><br />
-          <input type="radio" id="maintain" name="goal" value="maintain" />
-          <label for="maintain">Maintain Weight</label><br />
-          <input type="radio" id="lose" name="goal" value="lose" />
-          <label for="lose">Lose Weight</label><br />
-          <input type="radio" id="gain" name="goal" value="gain" />
-          <label for="gain">Gain Weight</label><br /><br />
-          <input type="submit" />
-        </form>
+      <form id="caloriesForm" method="post">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" /><br /><br />
+        <label>Sex:</label><br />
+        <input type="radio" id="male" name="sex" value="male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="sex" value="female" />
+        <label for="female">Female</label><br /><br />
+        <label for="height">Height (in cm):</label>
+        <input type="text" id="height2" name="height" /><br /><br />
+        <label for="weight">Weight (in kg):</label>
+        <input type="text" id="weight2" name="weight" /><br /><br />
+        <label>Activity:</label><br />
+        <input
+          type="radio"
+          id="sedentary"
+          name="activity"
+          value="sedentary"
+        />
+        <label for="sedentary">Sedentary</label><br />
+        <input
+          type="radio"
+          id="lightly_active"
+          name="activity"
+          value="lightly_active"
+        />
+        <label for="lightly_active">Lightly Active</label><br />
+        <input
+          type="radio"
+          id="moderately_active"
+          name="activity"
+          value="moderately_active"
+        />
+        <label for="moderately_active">Moderately Active</label><br />
+        <input
+          type="radio"
+          id="very_active"
+          name="activity"
+          value="very_active"
+        />
+        <label for="very_active">Very Active</label><br />
+        <input
+          type="radio"
+          id="extra_active"
+          name="activity"
+          value="extra_active"
+        />
+        <label for="extra_active">Extra Active</label><br /><br />
+        <label>Goal:</label><br />
+        <input type="radio" id="maintain" name="goal" value="maintain" />
+        <label for="maintain">Maintain Weight</label><br />
+        <input type="radio" id="lose" name="goal" value="lose" />
+        <label for="lose">Lose Weight</label><br />
+        <input type="radio" id="gain" name="goal" value="gain" />
+        <label for="gain">Gain Weight</label><br /><br />
+        <input type="submit" />
+      </form>
 
-        <h2 id="calories_result">Your recommended caloric intake is:</h2>
-      </div>
+      <h2 id="calories_result">Your recommended caloric intake is:</h2>
+    </div>
 
-      <!--<div id="tracker-row">
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
+    <!--<div id="tracker-row">
+    <span class="tracker">
+      <h2>Step Tracker</h2>
+    </span>
 
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
+    <span class="tracker">
+      <h2>Step Tracker</h2>
+    </span>
 
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
-		</div>-->
-    </main>
-  </body>
+    <span class="tracker">
+      <h2>Step Tracker</h2>
+    </span>
+  </div>-->
+  </main>
+</body>
 
-  <script src="js/bmi.js"></script>
+<script>
+  function w3_open() {
+  document.getElementById("Sidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("Sidebar").style.display = "none";
+}
+</script>
+<script src="js/bmi.js"></script>
+<script src="https://www.w3schools/com/lib/w3.js"></script>
+
 </html>
