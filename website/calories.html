@@ -2,50 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Biometric Calculator</title>
+    <title>Calorie Counting</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <nav>
-      <div class="app-title">
-        <img src="images/logo.png" class="logo" />
-        <span id="app-title-header"><h1>App Title</h1></span>
-      </div>
+        <div class="app-title">
+            <img src="images/logo.png" class="logo" />
+            <span id="app-title-header"><h1>App Title</h1></span>
+        </div>
 
-      <div id="menu">
-        <ul>
-          <li>
-            <span class="menu-item"><a href="home.html">Home</a></span>
-          </li>
-          <li>
-            <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
-          </li>
-          <li><span class="menu-item">Placeholder</span></li>
-          <li><span class="menu-item"><a href="steps.html">Step Tracker</a></span>
-          <li><span class="menu-item"><a href="sleep.html">Sleep tracker</a></span></li>
-          <li><span class="menu-item">Placeholder</span></li>
-        </ul>
-      </div>
+        <div id="menu">
+            <ul>
+            <li>
+                <span class="menu-item"><a href="home.html">Home</a></span>
+            </li>
+            <li><span class="menu-item"><a href="profile.html">Edit Profile</a></span></li>
+            <li>
+                <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
+            </li>
+            <li><span class="menu-item"><a href="calories.html">Calorie Counter</a></span></li>
+            <li><span class="menu-item">Placeholder</span></li>
+            <li><span class="menu-item">Placeholder</span></li>
+            </ul>
+        </div>
     </nav>
 
     <main class="right-of-menu">
       <div class="graph-container">
-        <h2>BMI Calculator</h2>
-
-        <form id="bmiForm" method="post">
-          <label for="height">Height (in cm):</label>
-          <input type="text" id="height" name="height" /><br /><br />
-          <label for="height">Weight (in kg):</label>
-          <input type="text" id="weight" name="weight" /><br /><br />
-          <input type="submit" />
-        </form>
-
-        <h2 id="result">Your BMI is:</h2>
-      </div>
-
-      <div class="graph-container">
-        <h2>Calorie Calculator</h2>
+        <h2>Caloric Intake Calculator</h2>
 
         <form id="caloriesForm" method="post">
           <label for="age">Age:</label>
@@ -108,21 +94,52 @@
         <h2 id="calories_result">Your recommended caloric intake is:</h2>
       </div>
 
-      <!--<div id="tracker-row">
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
+      <div class="graph-container">
+        <h2>Food Calorie Calculator</h2>
 
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
+        <form id="foodForm" method="post">
+            <p>Enter a type of food to determine how many calories is in a serving of it.</p>
+            <label for="food_name">Food: </label>
+            <input type="text" id="food_name" name="food_name"><br><br>
+            <input type="submit" />
+        </form>
 
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
-		</div>-->
+        <h2 id="food_result">Food calories:</h2>
+      </div>
+
+      <div class="graph-container">
+        <h2>Calorie Goal Setter</h2>
+
+        <form id="goalForm" method="post">
+            <p>Enter your daily caloric intake goal to set or update it.</p>
+            <label for="calories">Goal: </label>
+            <input type="text" id="calories" name="calories"><br><br>
+            <input type="submit" />
+        </form>
+
+        <h2 id="goal_result">Current goal:</h2>
+      </div>
+
+      <div class="graph-container">
+        <h2>Calorie Tracker</h2>
+        <form id="resetForm" method=""post>
+            <p>Reset your counted calories at the start of each day.</p>
+            <input type="submit" value="Reset"/>
+        </form>
+
+        <form id="trackerForm" method="post">
+            <p>Then use this form to add calories to your tracked calories for today.</p>
+            <label for="goal">Calories: </label>
+            <input type="text" id="goal" name="calories"><br><br>
+            <input type="submit" />
+        </form>
+
+        <h2 id="tracker_result">Total calories eaten today: </h2>
+        <h2 id="over_under"></h2>
+      </div>
+
     </main>
   </body>
 
-  <script src="js/bmi.js"></script>
+  <script src="js/calories.js"></script>
 </html>

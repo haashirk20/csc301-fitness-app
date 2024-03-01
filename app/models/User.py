@@ -1,5 +1,6 @@
 from app import bcrypt
 from firebase_admin import db
+import datetime
 import json
 
 
@@ -30,6 +31,7 @@ class User:
                     "calories_needed": self.calories_needed,
                     "calories_remaining": self.calories_remaining,
                     "sleep": {"goal": 0, "records": {}},
+                    "steps": {},
                 }
             )
             return True
@@ -96,6 +98,31 @@ class User:
         user_ref = db.reference("users").child(self.id).child("sleep")
         sleep_obj = user_ref.get()
         return sleep_obj.get("goal")
+
+    def steps_add(self, steps, date_str="today"):
+        if date_str == "today":
+            date_str = datetime.date.today().isoformat()
+
+        user_ref = db.reference("users").child(self.id).child("steps")
+        steps_obj = user_ref.get()
+        updated_steps = steps_obj.get(date_str, 0) + steps
+        steps_obj[date_str] = updated_steps
+        user_ref.set(steps_obj)
+
+        return updated_steps
+
+    def steps_reset(self, dates_str):
+        user_ref = db.reference("users").child(self.id).child("steps")
+        steps_obj = user_ref.get() or {}
+        for date_str in dates_str:
+            steps_obj[date_str] = 0
+        user_ref.set(steps_obj)
+
+        return 0
+
+    def get_steps(self):
+        steps_obj = db.reference("users").child(self.id).get().get("steps", {})
+        return steps_obj
 
     def get_calories_needed(self):
         self.calories_needed = (
