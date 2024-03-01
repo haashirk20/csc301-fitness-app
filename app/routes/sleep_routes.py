@@ -103,15 +103,15 @@ def sleep_week():
     result = sleep_utils.previous_sleeps(user, days_passed)
 
     # As requested by frontend, complete week even if null
-    for i in range(6 - days_passed):
+    for i in range(7 - days_passed):
         result["sleep"].append(
             {
                 "date": (
-                    datetime.date.today() + datetime.timedelta(days=i + 1)
+                    datetime.date.today() + datetime.timedelta(days=i)
                 ).isoformat(),
-                "day": (
-                    datetime.date.today() + datetime.timedelta(days=i + 1)
-                ).strftime("%A"),
+                "day": (datetime.date.today() + datetime.timedelta(days=i)).strftime(
+                    "%A"
+                ),
                 "hours": None,
             }
         )
