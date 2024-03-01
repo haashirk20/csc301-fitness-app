@@ -1,9 +1,11 @@
+import schedule
+import time
 from app.models import User
 import smtplib
 from email.mime.text import MIMEText
 
-SENDEMAIL = ''
-SENDPWD = ''
+SENDEMAIL = 'mohak.varma@gmail.com'
+SENDPWD = 'fxbu meun rlfl xlav'
 EMAILSUBJECTSLEEP = 'Reminder: Sleep'
 EMAILSUBJECTWORKOUT = 'Reminder: Workout'
 EMAILTEXTSLEEP = 'This is your scheduled daily reminder for sleep.'
@@ -43,4 +45,12 @@ def WorkoutReminder():
             msg['To'] = useremail
             smtpserver.sendmail(SENDEMAIL, useremail, msg.as_string())
         smtpserver.close()
+
+
+def Reminder():
+    schedule.every().day.at("22:00").do(SleepReminder())
+    schedule.every().day.at("11:20").do(WorkoutReminder())
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
