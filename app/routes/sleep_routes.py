@@ -6,7 +6,7 @@ import datetime
 import json
 
 
-@app.route("/api/sleep/goal", methods=["GET", "POST"])
+@app.route("/api/sleep/goal/", methods=["GET", "POST"])
 def sleep_goal():
     print("hahshfd")
 
@@ -70,7 +70,7 @@ def sleep_add():
     }, 200
 
 
-@app.route("/api/sleep/lastnight")
+@app.route("/api/sleep/lastnight/")
 def sleep_today():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
@@ -92,7 +92,7 @@ def sleep_today():
     }, 200
 
 
-@app.route("/api/sleep/week")
+@app.route("/api/sleep/week/")
 def sleep_week():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
@@ -126,7 +126,7 @@ def sleep_week():
     }, 200
 
 
-@app.route("/api/sleep/month")
+@app.route("/api/sleep/month/")
 def sleep_month():
     if "user" not in session:
         return {"message": "user not signed in"}, 401
