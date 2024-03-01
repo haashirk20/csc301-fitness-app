@@ -41,6 +41,5 @@ initialize_firebase_app()
 
 thread = Thread(target=reminders.Reminder())
 thread.start()
-thread.join()
 
 from app import routes  # placed down here to avoid circular imports
