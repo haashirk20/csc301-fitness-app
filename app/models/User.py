@@ -29,6 +29,7 @@ class User:
                     "name": self.name,
                     "calories_needed": self.calories_needed,
                     "calories_remaining": self.calories_remaining,
+                    "sleep": {"goal": 0, "records": {}},
                 }
             )
             return True
@@ -69,6 +70,32 @@ class User:
         user_ref.update({"calories_remaining": caloried_needed})
         self.calories_needed = caloried_needed
         self.calories_remaining = caloried_needed
+
+    def set_sleep_goal(self, goal):
+        user_ref = db.reference("users").child(self.id).child("sleep")
+        sleep_obj = user_ref.get()
+        sleep_obj["goal"] = goal
+        user_ref.update(sleep_obj)
+        print("set", sleep_obj["goal"])
+        return sleep_obj["goal"]
+
+    def set_sleep_record(self, date_slept, hours):
+        user_ref = db.reference("users").child(self.id).child("sleep")
+        sleep_obj = user_ref.get() or {}
+        sleep_obj.setdefault("records", {})
+        sleep_obj["records"][str(date_slept)] = hours
+        user_ref.update(sleep_obj)
+        return sleep_obj["records"][str(date_slept)]
+
+    def get_sleep_records(self):
+        user_ref = db.reference("users").child(self.id).child("sleep")
+        sleep_obj = user_ref.get()
+        return sleep_obj.get("records") or {}
+
+    def get_sleep_goal(self):
+        user_ref = db.reference("users").child(self.id).child("sleep")
+        sleep_obj = user_ref.get()
+        return sleep_obj.get("goal")
 
     def get_calories_needed(self):
         self.calories_needed = (
