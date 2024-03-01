@@ -4,8 +4,8 @@ from app.models import User
 import smtplib
 from email.mime.text import MIMEText
 
-SENDEMAIL = 'mohak.varma@gmail.com'
-SENDPWD = 'fxbu meun rlfl xlav'
+SENDEMAIL = 'csc301fitnessproject@gmail.com'
+SENDPWD = 'wuiu qlaf fvnn mdvb'
 EMAILSUBJECTSLEEP = 'Reminder: Sleep'
 EMAILSUBJECTWORKOUT = 'Reminder: Workout'
 EMAILTEXTSLEEP = 'This is your scheduled daily reminder for sleep.'
