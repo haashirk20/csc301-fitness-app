@@ -133,6 +133,7 @@ def sleep_month():
 
     # Number of days passed since last Sunday
     days_passed = datetime.date.today().day
+    days_passed = 30
     result = sleep_utils.previous_sleeps(user, days_passed - 1)
 
     return {
