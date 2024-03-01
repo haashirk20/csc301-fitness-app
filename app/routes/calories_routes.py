@@ -74,6 +74,7 @@ def calories_set():
 
     user = User.User(id=session["user"]["id"], name=session["user"]["name"])
 
+
     data = request.get_json()
     calories_needed = data.get("calories", "")
     if calories_needed == "":
