@@ -147,3 +147,8 @@ label {
 .graph-container form {
 	margin-bottom: 20px;
 }
+
+.graph-container p {
+    font-family: Helvetica, Arial, "sans-serif";
+    font-weight: 100;
+}
