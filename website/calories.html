@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Calorie Counting</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <!-- Meta Tags -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Title -->
+  <title>Calorie Counting</title>
+  
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
+  <link rel="stylesheet" href="css/theme.css"/>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Design Scripts -->
+  <script src="js/w3script.js"></script>
+  <script src="https://www.w3schools/com/lib/w3.js"></script>
   </head>
 
-  <body>
-    <nav>
-        <div class="app-title">
-            <img src="images/logo.png" class="logo" />
-            <span id="app-title-header"><h1>App Title</h1></span>
-        </div>
+  <body class="w3-theme-d4">
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left w3-col m3" style="width: 300px;" id="Sidebar">
+      <button class="w3-bar-item w3-button w3-hide-large" onclick="w3_close()">Close &times;</button>
+      <div class="app-title">
+        <img src="images/logo.png" class="logo">
+        <span id="app-title-header"><h1>App Title</h1></span>
+      </div>
 
-        <div id="menu">
-            <ul>
-            <li>
-                <span class="menu-item"><a href="home.html">Home</a></span>
-            </li>
-            <li><span class="menu-item"><a href="profile.html">Edit Profile</a></span></li>
-            <li>
-                <span class="menu-item"><a href="bmi.html">BMI Calculator</a></span>
-            </li>
-            <li><span class="menu-item"><a href="calories.html">Calorie Counter</a></span></li>
-            <li><span class="menu-item">Placeholder</span></li>
-            <li><span class="menu-item">Placeholder</span></li>
-            </ul>
-        </div>
+      <div id="menu">
+        <ul>
+          <li><span class="menu-item"><a href="home.html">Home</a></span></li>
+          <li><span class="menu-item"><a href="profile.html">Edit Profile</a></span></li>
+          <li><span class="menu-item"><a href="bmi.html">BMI Calculator</a></span></li>
+          <li><span class="menu-item"><a href="calories.html">Calorie Counter</a></span></li>
+          <li><span class="menu-item"><a href="steps.html">Step Tracker</a></span>
+          <li><span class="menu-item"><a href="sleep.html">Sleep tracker</a></span></li>
+        </ul>
+      </div>
     </nav>
 
-    <main class="right-of-menu">
+    <!-- Main contents -->
+    <div class="w3-col" style="width:25%">
+      <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
+    </div>
+
+    <main class="w3-container w3-col w3-mobile" style="width:50%">
       <div class="graph-container">
         <h2>Caloric Intake Calculator</h2>
 

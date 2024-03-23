@@ -1,65 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Log In</title>
-<link rel="stylesheet" href="css/style.css">
-<style>
-    a:link {
-      color: #00A76A;
-      background-color: transparent;
-      text-decoration: none;
-    }
-    a:visited {
-      color: #A7003D;
-      background-color: transparent;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #90A700;
-      background-color: transparent;
-      text-decoration: underline;
-    }
-</style>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- Title -->
+  <title>Log In</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
+  <link rel="stylesheet" href="css/theme.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <!-- This section can (and maybe should) be replaced with styles.css -->
+  <style>
+      a:link {
+        color: #00A76A;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #A7003D;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #90A700;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+  </style>
+
+  <!-- Design Scripts -->
+  <script src="js/w3script.js"></script>
+  <script src="https://www.w3schools/com/lib/w3.js"></script>
 </head>
 
-    <body>
-        
-        <div class="log_container"> 
-            <h1>LOG IN</h1> 
-            <img src="images/logo.png" class="logo2">
-            <form id="liForm"> 
-                <input style="font-size: 20px;"
-                       type="text" 
-                       id="name"
-                       name="name" 
-                       class="inputBox"
-                       placeholder=" Username" required> 
+<body class="w3-theme-d4">
+  <div class="log_container"> 
+    <h1>LOG IN</h1> 
+    <img src="images/logo.png" class="logo2">
+    <form id="liForm"> 
+      <input style="font-size: 20px;"
+             type="text" 
+             id="name"
+             name="name" 
+             class="inputBox"
+             placeholder=" Username" required> 
 
-                <br>
+      <br>
 
-                <input style="font-size: 20px;"
-                       type="password"
-                       id="password" 
-                       name="password"
-                       class="inputBox"
-                       placeholder=" Password" required> 
+      <input style="font-size: 20px;"
+             type="password"
+             id="password" 
+             name="password"
+             class="inputBox"
+             placeholder=" Password" required> 
 
-                <input type="submit" hidden />
-      
-            </form> 
+      <input type="submit" hidden />
+    </form> 
 
-            <p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
+    <p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
 
-            <script src="js/login.js"></script>
+    <script src="js/login.js"></script>
 
-            <p style="font-size: 20px;">Not registered?  
-                  <a href="signup.html" 
-                   style="text-decoration: none;"> 
-                    Create an account 
-                </a> 
-            </p> 
-        </div> 
-        
-    </body>
+    <p style="font-size: 20px;">Not registered?  
+      <a href="signup.html" 
+         style="text-decoration: none;"> 
+      Create an account 
+      </a> 
+    </p> 
+  </div> 
+</body>
 </html>
