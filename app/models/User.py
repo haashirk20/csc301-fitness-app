@@ -32,6 +32,7 @@ class User:
                     "calories_remaining": self.calories_remaining,
                     "sleep": {"goal": 0, "records": {}},
                     "steps": {},
+                    "workouts": {},
                 }
             )
             return True
@@ -53,19 +54,19 @@ class User:
             return True
         else:
             return False
-        
+
     def get_profile(self):
         user_ref = db.reference("users").child(self.id)
         user = user_ref.get()
         self.name = user.get("name")
         self.email = user.get("email")
         self.age = user.get("age")
-        
+
         return self.name, self.email, self.age, self.sex
-    
+
     def set_profile(self, name, email, age, sex):
         user_ref = db.reference("users").child(self.id)
-        #if name, email, age or sex is empty, do not update
+        # if name, email, age or sex is empty, do not update
         if name:
             user_ref.update({"name": name})
             self.name = name
@@ -143,6 +144,18 @@ class User:
         user_ref.set(steps_obj)
 
         return 0
+
+    def set_workout_record(self, today_date, total_tonnage, cals_burned):
+        user_ref = db.reference("users").child(self.id).child("workouts")
+        workouts_obj = user_ref.get() or {}
+        workouts_obj[today_date] = {"tonnage": total_tonnage, "calories": cals_burned}
+        print("workouts_obj", workouts_obj)
+        user_ref.update(workouts_obj)
+        return workouts_obj[str(today_date)]
+
+    def get_workout_records(self):
+        workout_obj = db.reference("users").child(self.id).get().get("workouts", {})
+        return workout_obj
 
     def get_steps(self):
         steps_obj = db.reference("users").child(self.id).get().get("steps", {})
