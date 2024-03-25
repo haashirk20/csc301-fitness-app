@@ -3,53 +3,41 @@ import time
 from app.models import User
 import smtplib
 from email.mime.text import MIMEText
+from datetime import datetime
 
 SENDEMAIL = 'csc301fitnessproject@gmail.com'
 SENDPWD = 'wuiu qlaf fvnn mdvb'
-EMAILSUBJECTSLEEP = 'Reminder: Sleep'
-EMAILSUBJECTWORKOUT = 'Reminder: Workout'
-EMAILTEXTSLEEP = 'This is your scheduled daily reminder for sleep.'
-EMAILTEXTWORKOUT = 'This is your scheduled daily reminder for workout.'
+EMAILSUBJECTSLEEP = 'Reminder: Workout'
+EMAILTEXTSLEEP = 'This is your scheduled daily reminder for workout.'
 
-def SleepReminder():
+
+def check_times():
     userlist = User.User().get_all_users()
     if len(userlist) == 0:
         return None
     else:
-        smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        smtpserver.ehlo()
-        smtpserver.login(SENDEMAIL, SENDPWD)
+        curr_time = datetime.now().strftime('%H:%M')
         for user in userlist:
-            useremail = user["email"]
-            msg = MIMEText(EMAILTEXTSLEEP)
-            msg['Subject'] = EMAILSUBJECTSLEEP
-            msg['From'] = SENDEMAIL
-            msg['To'] = useremail
-            smtpserver.sendmail(SENDEMAIL, useremail, msg.as_string())
-        smtpserver.close()
+            if curr_time == user['notiftime']:
+                WorkoutReminder(user['email'])
+        return
 
 
-def WorkoutReminder():
-    userlist = User.User().get_all_users()
-    if len(userlist) == 0:
-        return None
-    else:
-        smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        smtpserver.ehlo()
-        smtpserver.login(SENDEMAIL, SENDPWD)
-        for user in userlist:
-            useremail = user["email"]
-            msg = MIMEText(EMAILTEXTWORKOUT)
-            msg['Subject'] = EMAILSUBJECTWORKOUT
-            msg['From'] = SENDEMAIL
-            msg['To'] = useremail
-            smtpserver.sendmail(SENDEMAIL, useremail, msg.as_string())
-        smtpserver.close()
+def WorkoutReminder(email):
+    smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    smtpserver.ehlo()
+    smtpserver.login(SENDEMAIL, SENDPWD)
+    msg = MIMEText(EMAILTEXTSLEEP)
+    msg['Subject'] = EMAILSUBJECTSLEEP
+    msg['From'] = SENDEMAIL
+    msg['To'] = email
+    smtpserver.sendmail(SENDEMAIL, email, msg.as_string())
+    smtpserver.close()
+    return
 
 
 def Reminder():
-    schedule.every().day.at("22:00").do(SleepReminder())
-    schedule.every().day.at("11:20").do(WorkoutReminder())
+    schedule.every(15).minutes.do(check_times())
     while True:
         schedule.run_pending()
         time.sleep(1)
