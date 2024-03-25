@@ -145,11 +145,16 @@ class User:
 
         return 0
 
-    def set_workout_record(self, today_date, total_tonnage, cals_burned):
+    def set_workout_record(self, today_date, tonnage, cals):
         user_ref = db.reference("users").child(self.id).child("workouts")
         workouts_obj = user_ref.get() or {}
-        workouts_obj[today_date] = {"tonnage": total_tonnage, "calories": cals_burned}
-        print("workouts_obj", workouts_obj)
+        new_total_tonnage = workouts_obj.get(today_date, {}).get("tonnage", 0) + tonnage
+        new_total_cals = workouts_obj.get(today_date, {}).get("calories", 0) + cals
+
+        workouts_obj[today_date] = {
+            "tonnage": round(new_total_tonnage, 2),
+            "calories": round(new_total_cals, 2),
+        }
         user_ref.update(workouts_obj)
         return workouts_obj[str(today_date)]
 

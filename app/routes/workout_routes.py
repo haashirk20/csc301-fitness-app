@@ -14,48 +14,43 @@ def workout():
     # Check that request data is valid
     data = request.get_json()
 
-    if "workouts" not in data or not isinstance(data["workouts"], list):
-        return {"message": "workouts must be list"}, 400
     if "time" not in data or "sex" not in data or "bodyWeight" not in data:
         return {"message": "time, sex, or bodyWeight missing"}, 400
     if data["sex"] != "male" and data["sex"] != "female":
         return {"message": "sex must be male or female"}, 400
+    if "name" not in data or data["name"] == "":
+        return {"message": "name missing"}, 400
+    if "sets" not in data or data["sets"] == "":
+        return {"message": "sets missing"}, 400
+    if "reps" not in data or data["reps"] == "":
+        return {"message": "reps missing"}, 400
+    if "weight" not in data or data["weight"] == "":
+        return {"message": "weight missing"}, 400
 
     try:
         data["time"] = int(data["time"])
         data["bodyWeight"] = int(data["bodyWeight"])
     except:
         return {"message": "time and bodyWeight must be integers"}, 400
-
-    for exercise in data["workouts"]:
-        if "name" not in exercise or exercise["name"] == "":
-            return {"message": "name missing"}, 400
-        if "sets" not in exercise or exercise["sets"] == "":
-            return {"message": "sets missing"}, 400
-        if "reps" not in exercise or exercise["reps"] == "":
-            return {"message": "reps missing"}, 400
-        if "weight" not in exercise or exercise["weight"] == "":
-            return {"message": "weight missing"}, 400
-
-        try:
-            exercise["sets"] = int(exercise["sets"])
-            exercise["reps"] = int(exercise["reps"])
-            exercise["weight"] = int(exercise["weight"])
-        except:
-            return {"message": "sets, reps, and weight must be integers"}, 400
+    try:
+        data["sets"] = int(data["sets"])
+        data["reps"] = int(data["reps"])
+        data["weight"] = int(data["weight"])
+    except:
+        return {"message": "sets, reps, and weight must be integers"}, 400
 
     user = User.User(id=session["user"]["id"])
     today_date = datetime.date.today().isoformat()
-    total_tonnage = workout_utils.tonnage(data["workouts"])
+    tonnage = workout_utils.tonnage(data["sets"], data["reps"], data["weight"])
     cals_burned = workout_utils.calories_burned(
         data["time"], data["bodyWeight"], data["sex"]
     )
-    result = user.set_workout_record(today_date, total_tonnage, cals_burned)
+    result = user.set_workout_record(today_date, tonnage, cals_burned)
 
     return {
         "message": "success",
-        "tonsLifted": result["tonnage"],
-        "caloriesBurned": result["calories"],
+        "tonsLifted": tonnage,
+        "caloriesBurned": cals_burned,
     }, 200
 
 

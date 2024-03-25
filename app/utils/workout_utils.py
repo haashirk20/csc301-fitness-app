@@ -1,17 +1,11 @@
 import datetime
 
 
-def tonnage(workouts):
+def tonnage(sets, reps, weight):
     total_tons = 0
-    # weight_metric = 907.185 # if weight is kg
+    # weight_metric = 907.185  # if weight is kg
     weight_metric = 2000  # if weight is lbs
-    for exercise in workouts:
-        total_tons += (
-            int(exercise["sets"])
-            * int(exercise["reps"])
-            * int(exercise["weight"])
-            / weight_metric
-        )
+    total_tons += round(int(sets) * int(reps) * int(weight) / weight_metric, 2)
     return total_tons
 
 
@@ -23,7 +17,7 @@ def calories_burned(time, weight, sex):
     if sex == "female":
         cals_burned = time * weight * 0.0637
     print("cals_burned", cals_burned)
-    return cals_burned
+    return round(cals_burned, 2)
 
 
 def previous_workouts(user, days):
