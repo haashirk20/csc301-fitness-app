@@ -7,8 +7,8 @@ from datetime import datetime
 
 SENDEMAIL = 'csc301fitnessproject@gmail.com'
 SENDPWD = 'wuiu qlaf fvnn mdvb'
-EMAILSUBJECTSLEEP = 'Reminder: Workout'
-EMAILTEXTSLEEP = 'This is your scheduled daily reminder for workout.'
+EMAILSUBJECTWORKOUT = 'Reminder: Workout'
+EMAILTEXTWORKOUT = 'This is your scheduled daily reminder for workout.'
 
 
 def check_times():
@@ -27,8 +27,8 @@ def WorkoutReminder(email):
     smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     smtpserver.ehlo()
     smtpserver.login(SENDEMAIL, SENDPWD)
-    msg = MIMEText(EMAILTEXTSLEEP)
-    msg['Subject'] = EMAILSUBJECTSLEEP
+    msg = MIMEText(EMAILTEXTWORKOUT)
+    msg['Subject'] = EMAILSUBJECTWORKOUT
     msg['From'] = SENDEMAIL
     msg['To'] = email
     smtpserver.sendmail(SENDEMAIL, email, msg.as_string())
