@@ -43,25 +43,28 @@
 	
     <main class="w3-container w3-col w3-mobile" style="width:50%">
 		<div class="graph-container" style="width:600px">
-			<h2>Weekly Step History</h2>
+
+			<h2>Weekly Workout History</h2>
 			
 			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
 
-            <form id="stForm">
-                <label for="steps">Add steps for today:</label>
+            <form id="woForm">
+                <label for="steps">Add workouts for today:</label>
                 <input type="number"  id="steps" name="steps"/><br />
                 <input type="submit" hidden/>
             </form>
 
 			<p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
 
-            <h2 id="step_dsp">Steps today: </h2>
+            <h2 id="work_dsp">Calories burned today: </h2>
 
-            <h2>Monthly Step History</h2>
+            <h2 id="work_dsp2">Tons Lifted today: </h2>
+
+            <h2>Monthly Workout History</h2>
 
             <canvas id="monthChart" style="width:100%;max-width:600px;;" ></canvas>
 
-            <script src="js/steps.js"></script>
+            <script src="js/workouts.js"></script>
 			
 		</div>
 		<br>
