@@ -14,10 +14,20 @@ let w_chart = new Chart("weekChart", {
     type: "bar",
     data: {
       labels: date,
-      datasets: [{
-        backgroundColor: barColors,
-        data: yValues
-      }]
+      datasets: [
+          {
+              label: 'Tons Lifted',
+              data: yValues,
+              backgroundColor: barColors[0],
+              yAxisID: "yaxis1",
+          },
+          {
+              label: 'Calories Burned',
+              data: yValues2,
+              backgroundColor: barColors[1],
+              yAxisID: "yaxis2",
+          }
+      ]
     },
     options: {
       title: {
@@ -29,12 +39,21 @@ let w_chart = new Chart("weekChart", {
         intersect: false,
       },
       scales: {
-        x: {
-          stacked: true,
-        },
-        y: {
-          stacked: true
-        }
+        yAxes: [{
+          type: "linear",
+          display: true,
+          position: "right",
+          id: "yaxis1",
+
+        }, {
+          type: "linear",
+          display: true,
+          position: "left",
+          id: "yaxis2",
+          gridLines: {
+            drawOnChartArea: false
+          }
+        }],
       }
     }
 });
@@ -43,13 +62,22 @@ let m_chart = new Chart("monthChart", {
     type: "bar",
     data: {
       labels: weeks,
-      datasets: [{
-        backgroundColor: barColors2,
-        data: yValues2
-      }]
+      datasets: [
+          {
+              label: 'Tons Lifted',
+              data: yValues,
+              backgroundColor: barColors[0],
+              yAxisID: "yaxis1",
+          },
+          {
+              label: 'Calories Burned',
+              data: yValues2,
+              backgroundColor: barColors[1],
+              yAxisID: "yaxis2",
+          }
+      ]
     },
     options: {
-      legend: {display: false}, 
       title: {
         display: true,
         text: "Sleep hours this month"
@@ -59,12 +87,21 @@ let m_chart = new Chart("monthChart", {
         intersect: false,
       },
       scales: {
-        x: {
-          stacked: true,
-        },
-        y: {
-          stacked: true
-        }
+        yAxes: [{
+          type: "linear",
+          display: true,
+          position: "right",
+          id: "yaxis1",
+
+        }, {
+          type: "linear",
+          display: true,
+          position: "left",
+          id: "yaxis2",
+          gridLines: {
+            drawOnChartArea: false
+          }
+        }],
       }
     }
 });
@@ -88,16 +125,16 @@ async function updateGraphs() {
     labels: date,
     datasets: [
         {
-            label: 'Tons Lifted',
+            label: 'Tons Lifted (Left)',
             data: weights,
             backgroundColor: barColors[0],
-            stack: 'Stack 0',
+            yAxisID: "yaxis2",
         },
         {
-            label: 'Calories Burned',
+            label: 'Calories Burned (Right)',
             data: calories,
             backgroundColor: barColors[1],
-            stack: 'Stack 1',
+            yAxisID: "yaxis1",
         }
     ]
   };
@@ -119,70 +156,61 @@ async function updateGraphs() {
     labels: month,
     datasets: [
         {
-            label: 'Tons Lifted',
+            label: 'Tons Lifted (Left)',
             data: month_weights,
             backgroundColor: barColors[0],
-            stack: 'Stack 0',
-            id: "tons",
-            label: "tons lifted",
-            yAxisID:"right"
+            yAxisID: "yaxis2",
         },
         {
-            label: 'Calories Burned',
+            label: 'Calories Burned (Right)',
             data: month_calories,
             backgroundColor: barColors[1],
-            stack: 'Stack 1',
-            id: "calories",
-            label: "calories burned",
-            yAxisID:"left"
+            yAxisID: "yaxis1",
         }
     ]
-  };
-  m_chart.options = {
-    legend: {display: false}, 
-    title: {
-      display: true,
-      text: "Sleep hours this month"
-    },
-    responsive: true,
-    interaction: {
-      intersect: false,
-    },
-    scales: {
-      x: [{
-        stacked: true,
-      }],
-      y: {
-        stacked: true
-      }
-    }
   };
   m_chart.update();
 
 }
 
 async function updateWorkouts() {
-  if (tody_dsp) {
+  if (work_dsp && lift_dsp && errM) {
   
     const today_data = await fetch('http://127.0.0.1:5000/api/workout/today', {
             method: 'GET',
 			credentials: "include",
     });
 
+    const code = await today_data.status
     const result = await today_data.json();
-    const cal = JSON.parse(result["caloriesBurned"]);
-    const tons = JSON.parse(result["tonsLifted"]);
 
-    if (cal && tons) {
-        if (work_dsp.style.display === "none") {
-            work_dsp.style.display = "block";
-        }
-        if (lift_dsp.style.display === "none") {
-            lift_dsp.style.display = "block";
-        }
-        work_dsp.innerHTML = "Calories burned today: " + cal;
-        lift_dsp.innerHTML = "Tons Lifted today: " + tons;
+    if (code == 200) {
+
+      work_dsp.style.display = "none";
+      const cal = JSON.parse(result["caloriesBurned"]);
+      const tons = JSON.parse(result["tonsLifted"]);
+
+      if (cal && tons) {
+          if (work_dsp.style.display === "none") {
+              work_dsp.style.display = "block";
+          }
+          if (lift_dsp.style.display === "none") {
+              lift_dsp.style.display = "block";
+          }
+          work_dsp.innerHTML = "Calories burned today: " + cal;
+          lift_dsp.innerHTML = "Tons Lifted today: " + tons;
+      }
+    } else {
+      if (errM.style.display === "none") {
+        errM.style.display = "block";
+      } 
+      work_dsp.style.display = "none";
+      lift_dsp.style.display = "none";
+
+      errM.innerHTML = "Notice: " + result["message"];
+
     }
+    
     
   }
 }

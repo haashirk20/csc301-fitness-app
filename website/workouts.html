@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>BMI Calculator</title>
+	<title>Workout Tracker</title>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
 	<link rel="stylesheet" href="css/theme.css"/>
@@ -31,7 +31,7 @@
 				<li><span class="menu-item">Placeholder</span></li>
 				<li><span class="menu-item"><a href="steps.html">Step tracker</a></span></li>
 				<li><span class="menu-item"><a href="sleep.html">Sleep tracker</a></span></li>
-				<li><span class="menu-item"><a href="workouts.html"></a>workouts tracker</span></li>
+				<li><span class="menu-item"><a href="workouts.html">workouts tracker</a></span></li>
 			</ul>
 		</div>
 	</nav>
@@ -48,9 +48,24 @@
 			
 			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
 
+            <!-- {"name": STRING, "sets": INT, "reps": INT, "weight": INT in lbs, "time": INT in minutes, "sex": "male" or "female", "bodyWeight":  INT in kg} -->
+
             <form id="woForm">
-                <label for="steps">Add workouts for today:</label>
-                <input type="number"  id="steps" name="steps"/><br />
+                <h2>Add workout for today:</h2>
+                <label for="name">Name of workout: </label>
+                <input type="text"  id="name" name="name"/><br />
+                <label for="sets">Sets: </label>
+                <input type="number"  id="sets" name="sets"/><br />
+                <label for="reps">Reps: </label>
+                <input type="number"  id="reps" name="reps"/><br />
+                <label for="weight">Weight: </label>
+                <input type="number"  id="weight" name="weight"/><br />
+                <label for="time">Time: </label>
+                <input type="number"  id="time" name="time"/><br />
+                <label for="sex">Sex (male or female): </label>
+                <input type="text"  id="sex" name="sex"/><br />
+                <label for="bodyWeight">Body Weight: </label>
+                <input type="number"  id="bodyWeight" name="bodyWeight"/><br />
                 <input type="submit" hidden/>
             </form>
 
