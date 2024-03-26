@@ -143,6 +143,10 @@ class User:
         user_ref.set(steps_obj)
 
         return 0
+    
+    def set_notifs(self, notif_time):
+        user_ref = db.reference("users").child(self.id)
+        user_ref.update({"notiftime": notif_time})
 
     def get_steps(self):
         steps_obj = db.reference("users").child(self.id).get().get("steps", {})
