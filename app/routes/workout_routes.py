@@ -85,7 +85,6 @@ def workout_week():
     # Number of days passed since last Sunday
     dayCode = datetime.date.today().weekday()
     days_passed = (dayCode - 6) % 7 + 1
-    print("days_passed", days_passed)
     result = workout_utils.previous_workouts(user, days_passed)
 
     # As requested by frontend, complete week even if null

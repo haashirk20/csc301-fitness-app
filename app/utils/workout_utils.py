@@ -16,13 +16,11 @@ def calories_burned(time, weight, sex):
         cals_burned = time * weight * 0.0713
     if sex == "female":
         cals_burned = time * weight * 0.0637
-    print("cals_burned", cals_burned)
     return round(cals_burned, 2)
 
 
 def previous_workouts(user, days):
     workout_records = user.get_workout_records()
-    print("days", days, "records", workout_records)
     workouts_arr = []
     today_date = datetime.date.today()
     total_tons = 0
@@ -33,7 +31,6 @@ def previous_workouts(user, days):
     for i in range(days - 1, -1, -1):
         date = today_date - datetime.timedelta(days=i)
         date_str = date.isoformat()
-        print("DAY", i, date_str)
 
         # if user didn't record workout for that day:
         if date_str not in workout_records:
@@ -54,7 +51,6 @@ def previous_workouts(user, days):
                 "caloriesBurned": cals_burned,
             }
         )
-        print("workouts_arr", workouts_arr)
 
     if days_accounted_for == 0:
         return {
