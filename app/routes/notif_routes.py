@@ -11,6 +11,6 @@ def set_profile():
     new_notif = data.get('notiftime', '')
 
     user = User.User(id=session['user']['id'], name=session['user']['name'])
-    user.set_profile(new_notif)
+    user.set_notifs(new_notif)
 
     return {'message': 'success'}, 200
