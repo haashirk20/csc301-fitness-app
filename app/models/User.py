@@ -32,6 +32,7 @@ class User:
                     "calories_remaining": self.calories_remaining,
                     "sleep": {"goal": 0, "records": {}},
                     "steps": {},
+                    "notifs": {"notiftime": ""},
                 }
             )
             return True
@@ -145,8 +146,12 @@ class User:
         return 0
     
     def set_notifs(self, notif_time):
-        user_ref = db.reference("users").child(self.id)
-        user_ref.update({"notiftime": notif_time})
+        user_ref = db.reference("users").child(self.id).child("notifs")
+        notif_obj = user_ref.get()
+        notif_obj["notiftime"] = notif_time
+        user_ref.update(notif_obj)
+        print("set", notif_obj["notiftime"])
+        return notif_obj["notiftime"]
 
     def get_steps(self):
         steps_obj = db.reference("users").child(self.id).get().get("steps", {})
