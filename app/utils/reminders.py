@@ -1,4 +1,5 @@
 import schedule
+from schedule import run_pending
 import time
 from app.models import User
 import smtplib
@@ -10,7 +11,6 @@ SENDPWD = 'wuiu qlaf fvnn mdvb'
 EMAILSUBJECTWORKOUT = 'Reminder: Workout'
 EMAILTEXTWORKOUT = 'This is your scheduled daily reminder for workout.'
 
-
 def check_times():
     userlist = User.User().get_all_users()
     if len(userlist) == 0:
@@ -18,8 +18,10 @@ def check_times():
     else:
         curr_time = datetime.now().strftime('%H:%M')
         for user in userlist:
-            if curr_time == user['notiftime']:
-                WorkoutReminder(user['email'])
+            if "notifs" in user and "notiftime" in user["notifs"]:
+                notiftime = user["notifs"]["notiftime"]
+                if curr_time == notiftime:
+                    WorkoutReminder(user['email'])
         return
 
 
@@ -35,10 +37,8 @@ def WorkoutReminder(email):
     smtpserver.close()
     return
 
-
-def Reminder():
-    schedule.every(15).minutes.do(check_times())
+def reminder():
+    schedule.every(1).minutes.do(check_times)
     while True:
-        schedule.run_pending()
+        run_pending()
         time.sleep(1)
-
