@@ -54,7 +54,7 @@ async function updateGraphs() {
     labels: days,
     datasets: [{ 
       data: steps,
-      borderColor: "red",
+      borderColor: "yellow",
       fill: false
     }]
   };
@@ -74,7 +74,7 @@ async function updateGraphs() {
     labels: month,
     datasets: [{ 
       data: month_steps,
-      borderColor: "red",
+      borderColor: "yellow",
       fill: false
     }]
   };
