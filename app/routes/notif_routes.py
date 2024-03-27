@@ -16,4 +16,3 @@ def set_notifs():
     time_value = datetime.strptime(time, "%H:%M")
     time_12hour = time_value.strftime("%I:%M%p")
     return {'time': time_12hour}, 200
-
