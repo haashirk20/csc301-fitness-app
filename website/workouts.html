@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Sleep Tracker</title>
+	<title>Workout Tracker</title>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
 	<link rel="stylesheet" href="css/theme.css"/>
@@ -35,7 +35,7 @@
 			</ul>
 		</div>
 	</nav>
-	
+
     <!-- Main Page Content -->
     <div class="w3-col" style="width:25%">
         <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
@@ -43,34 +43,46 @@
 	
     <main class="w3-container w3-col w3-mobile" style="width:50%">
 		<div class="graph-container" style="width:600px">
-			<h2>Weekly Sleep History</h2>
+
+			<h2>Weekly Workout History</h2>
 			
-			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 30px;" ></canvas>
+			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
 
-            <form id="stForm">
-                <label for="sleptAt">Slept at:</label>
-                <input type="datetime-local"  id="sleptAt" name="sleptAt"/><br />
-                <label for="awakeAt">Awake at:</label>
-                <input type="datetime-local"  id="awakeAt" name="awakeAt"/><br />
+            <!-- {"name": STRING, "sets": INT, "reps": INT, "weight": INT in lbs, "time": INT in minutes, "sex": "male" or "female", "bodyWeight":  INT in kg} -->
+
+            <form id="woForm">
+                <h2>Add workout for today:</h2>
+                <label for="name">Name of workout: </label>
+                <input type="text"  id="name" name="name"/><br />
+                <label for="sets">Sets: </label>
+                <input type="number"  id="sets" name="sets"/><br />
+                <label for="reps">Reps: </label>
+                <input type="number"  id="reps" name="reps"/><br />
+                <label for="weight">Weight(Lbs): </label>
+                <input type="number"  id="weight" name="weight"/><br />
+                <label for="time">Time(Min): </label>
+                <input type="number"  id="time" name="time"/><br />
+                <label for="sex">Sex: </label>
+                <select  id="sex" name="sex">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select><br />
+                <label for="bodyWeight">Body Weight (Kg): </label>
+                <input type="number"  id="bodyWeight" name="bodyWeight"/><br />
                 <input type="submit" hidden/>
             </form>
 
-            <form id="gForm">
-                <label for="goal">goal:</label>
-                <input type="number"  id="goal" name="goal"/><br />
-                <input type="submit" hidden/>
-            </form>
+			<p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
 
-            <p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
+            <h2 id="work_dsp">Calories burned today: </h2>
 
-            <h2 id="yest_dsp" style="display:none">Sleep hours yesterday: </h2>
-            <h2 id="tody_dsp" style="display:none">Sleep Goal today: </h2>
+            <h2 id="work_dsp2">Tons Lifted today: </h2>
 
-            <h2>Monthly Sleep History</h2>
+            <h2>Monthly Workout History</h2>
 
             <canvas id="monthChart" style="width:100%;max-width:600px;;" ></canvas>
 
-            <script src="js/sleep.js"></script>
+            <script src="js/workouts.js"></script>
 			
 		</div>
 		<br>
