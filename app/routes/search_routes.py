@@ -8,8 +8,8 @@ import json
 
 @app.route("/api/search", methods=["POST"])
 def search():
-    # if "user" not in session:
-    #     return {'message': 'user not signed in'}, 401
+    if "user" not in session:
+        return {'message': 'user not signed in'}, 401
 
     data = request.get_json()
     query = data.get("query", "").lower()
