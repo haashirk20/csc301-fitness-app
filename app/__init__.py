@@ -5,7 +5,7 @@ from firebase_admin import credentials
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from threading import Thread
-from utils import reminders
+
 app = flask.Flask(__name__)
 
 app.config.update(
@@ -39,7 +39,9 @@ def initialize_firebase_app():
 
 initialize_firebase_app()
 
-thread = Thread(target=reminders.Reminder())
+from app.utils import reminders
+thread = Thread(target=reminders.reminder)
+thread.daemon = True
 thread.start()
 
 from app import routes  # placed down here to avoid circular imports
