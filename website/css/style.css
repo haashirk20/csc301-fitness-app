@@ -4,15 +4,20 @@
 /* Start of media queries */
 /* End of media queries */
 
+:root {
+    --main-blue: #1700A7;
+    --background: #00006D;
+}
+
 body {
 	margin-left: 0px;
 	margin-top: 0px;
-	background-color: #00006D;
+	background-color: var(--background);
 	color: #FFFFFF;
 }
 
 nav {
-	background-color: #1700A7;
+	background-color: var(--main-blue);
 	width: 20%;
 	height: 100vh;
 	border-radius: 0 40px 40px 0;
@@ -95,7 +100,7 @@ form {
 }
 
 .log_container {
-	background-color: #1700A7;
+	background-color: var(--main-blue);
 	height: 40%;
 	width: 30%;
 	border-radius: 10px;
@@ -111,7 +116,7 @@ form {
 }
 
 .graph-container {
-	background-color: #1700A7;
+	background-color: var(--main-blue);
 	border-radius: 20px;
 	margin-top: 50px;
 	padding: 10px 50px 10px 50px;
@@ -131,7 +136,7 @@ form {
 }
 
 .tracker {
-	background-color: #1700A7;
+	background-color: var(--main-blue);
 	width: 150px;
 	height: 100px;
 	display: inline-block;

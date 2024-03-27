@@ -33,6 +33,7 @@ class User:
                     "sleep": {"goal": 0, "records": {}},
                     "steps": {},
                     "notifs": {"notiftime": ""},
+                    "workouts": {},
                 }
             )
             return True
@@ -54,19 +55,19 @@ class User:
             return True
         else:
             return False
-        
+
     def get_profile(self):
         user_ref = db.reference("users").child(self.id)
         user = user_ref.get()
         self.name = user.get("name")
         self.email = user.get("email")
         self.age = user.get("age")
-        
+
         return self.name, self.email, self.age, self.sex
-    
+
     def set_profile(self, name, email, age, sex):
         user_ref = db.reference("users").child(self.id)
-        #if name, email, age or sex is empty, do not update
+        # if name, email, age or sex is empty, do not update
         if name:
             user_ref.update({"name": name})
             self.name = name
@@ -152,6 +153,23 @@ class User:
         user_ref.update(notif_obj)
         print("set", notif_obj["notiftime"])
         return notif_obj["notiftime"]
+
+    def set_workout_record(self, today_date, tonnage, cals):
+        user_ref = db.reference("users").child(self.id).child("workouts")
+        workouts_obj = user_ref.get() or {}
+        new_total_tonnage = workouts_obj.get(today_date, {}).get("tonnage", 0) + tonnage
+        new_total_cals = workouts_obj.get(today_date, {}).get("calories", 0) + cals
+
+        workouts_obj[today_date] = {
+            "tonnage": round(new_total_tonnage, 2),
+            "calories": round(new_total_cals, 2),
+        }
+        user_ref.update(workouts_obj)
+        return workouts_obj[str(today_date)]
+
+    def get_workout_records(self):
+        workout_obj = db.reference("users").child(self.id).get().get("workouts", {})
+        return workout_obj
 
     def get_steps(self):
         steps_obj = db.reference("users").child(self.id).get().get("steps", {})
