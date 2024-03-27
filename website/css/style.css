@@ -27,7 +27,8 @@ nav {
 }
 
 #app-title-header {
-	margin-top: 10px;
+	transform: translateY(18px);
+    display: inline-block;
 }
 
 .app-title {
@@ -41,6 +42,7 @@ nav {
 	width: 62px;
 	height: 62px;
 	margin-bottom: -30px;
+    display: inline-block;
 }
 
 .logo2 {
@@ -60,7 +62,7 @@ nav h1 {
 }
 
 nav ul {
-	margin-top: 150px;
+	margin-top: 25px;
 	margin-left: 75px;
 	font-weight: 200;
 }
@@ -68,7 +70,7 @@ nav ul {
 nav li {
 	font-family: Helvetica, Arial, "sans-serif";
 	font-size: 5.5rem;
-	margin-bottom: -48.5px;
+	margin-bottom: -68.5px;
 	margin-left: 5px;
 }
 
