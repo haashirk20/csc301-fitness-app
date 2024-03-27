@@ -22,7 +22,7 @@ if (notiForm) {
       location.href("/login.html");
     } else if (responsecode == 200) {
       result_element.innerHTML = "New notification time: " + result.time;
-      document.getElementById("currTime").innerText = result.time;
+      document.getElementById("currTime").innerHTML = result.time;
       document.getElementById("notiForm").reset();
     }
   });
