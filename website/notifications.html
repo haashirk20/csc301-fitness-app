@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Title -->
     <title>Fitness App</title>
 
-    <!-- CSS Links -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css" />
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- JavaScript Links -->
     <script src="js/w3script.js"></script>
-    <script src="https://www.w3schools/com/lib/w3.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
 
   <body class="w3-theme-d4">
-    <!-- Sidebar -->
     <nav
       class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left w3-col m3"
       style="width: 300px"
@@ -51,50 +46,42 @@
               ><a href="calories.html">Calorie Counter</a></span
             >
           </li>
-          <li>
-            <span class="menu-item"><a href="steps.html">Step Tracker</a></span>
-          </li>
-          <li>
-            <span class="menu-item"
-              ><a href="sleep.html">Sleep tracker</a></span
-            >
-          </li>
-          <li>
-            <span class="menu-item"
-              ><a href="notifications.html">Daily Notifications</a></span
-            >
-          </li>
+          <li><span class="menu-item">Placeholder</span></li>
+          <li><span class="menu-item">Placeholder</span></li>
         </ul>
       </div>
     </nav>
 
-    <!-- Main contents -->
+    <!-- Main Page Content -->
     <div class="w3-col" style="width: 25%">
       <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
     </div>
 
-    <!-- TODO: Replace CSS classes with Responsive Equivalent -->
-    <main class="right-of-menu">
+    <main class="w3-container w3-col w3-mobile" style="width: 50%">
       <div class="graph-container">
-        <h2>Graph Overview</h2>
+        <h1>Daily Notifications</h1>
 
-        <div class="graph"></div>
+        <p style="font-size: 16px">
+          Set the time you would like to receive daily notifications. You will
+          receive a notification at the same time every day about your set goals
+          and metrics.
+        </p>
+
+        <p style="font-size: 18px">
+          Your current notification time: <span id="currTime">Not set</span>
+        </p>
+
+        <form id="notiForm" method="post">
+          <label for="newTime" style="font-size: 18px"
+            >When would you like to receive daily notifications?</label
+          ><br /><br />
+          <input type="time" id="newTime" name="newTime" /><br /><br />
+          <input type="submit" />
+        </form>
+
+        <h2 id="profile_result"></h2>
       </div>
-      <br />
-
-      <!--<div id="tracker-row">
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
-
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
-
-			<span class="tracker">
-				<h2>Step Tracker</h2>
-			</span>
-		</div>-->
     </main>
   </body>
+  <script src="js/notifications.js"></script>
 </html>
