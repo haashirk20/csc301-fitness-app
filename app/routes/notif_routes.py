@@ -13,6 +13,8 @@ def set_notifs():
 
     user = User.User(id=session["user"]["id"])
     time = user.set_notifs(new_notif)
+    
     time_value = datetime.strptime(time, "%H:%M")
     time_12hour = time_value.strftime("%I:%M%p")
+    
     return {'time': time_12hour}, 200
