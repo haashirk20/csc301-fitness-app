@@ -1,8 +1,10 @@
 const search_Form = document.getElementById('searchForm');
+const main = document.getElementById("search-results-holder");
 
 if (search_Form) {
   search_Form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    
     const formData = new FormData(search_Form).entries()
     const response = await fetch('http://127.0.0.1:5000/api/search', {
       method: 'POST',
@@ -15,6 +17,8 @@ if (search_Form) {
 
     const responseCode = await response.status;
 
+    main.innerHTML = "";
+
     const result_element = document.getElementById('search_result');
     if (responseCode == 401) {
       //user not signed in
@@ -22,7 +26,7 @@ if (search_Form) {
     } else if (responseCode == 404) {
       //missing data
       if (result.message == "no results found") {
-        result_element.innerHTML = "Please enter a valid numeric age."
+        result_element.innerHTML = "Found 0 users that match your query."
       } else {
         result_element.innerHTML = "An unknown error occurred."
       } 
@@ -31,7 +35,6 @@ if (search_Form) {
       //success
       result_element.innerHTML = "Found " + result.results[0].length + " users that match your query."
 
-      const main = document.getElementById("main");
       var user;
       var text;
       var tag;
@@ -60,13 +63,13 @@ if (search_Form) {
         //calorie goal
         tag = document.createElement("p");
         user.appendChild(tag);
-        text = document.createTextNode("Calorie goal: " + result.results[3][i])
+        text = document.createTextNode("Calorie goal: " + result.results[3][i] + "calories/day.")
         tag.appendChild(text);
 
         //sleep goal
         tag = document.createElement("p");
         user.appendChild(tag);
-        text = document.createTextNode("Sleep goal: " + result.results[4][i])
+        text = document.createTextNode("Sleep goal: " + result.results[4][i] + " hours/night.")
         tag.appendChild(text);
 
         main.appendChild(user);
