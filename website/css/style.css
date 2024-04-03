@@ -112,9 +112,15 @@ form {
 }
 
 .right-of-menu {
-	margin-left: 25%;
+    padding-top: 30px;
+	margin-left: 330px;
 	position: absolute;
 	padding-bottom: 50px;
+    z-index: -1;
+}
+
+.w3-container {
+    margin-top: 30px;
 }
 
 .graph-container {
@@ -159,3 +165,37 @@ label {
     font-family: Helvetica, Arial, "sans-serif";
     font-weight: 100;
 }
+
+.top-bar {
+    background-color: var(--main-blue);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    height: 40px;
+    z-index: 0;
+    padding-left: 315px;
+    padding-top: 8px;
+}
+
+.top-bar a {
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.top-bar h3 {
+    font-family: Helvetica, Arial, "sans-serif";
+	font-weight: 100;
+	font-size: 1rem;
+	text-decoration: none;
+    z-index: 100;
+    display: inline;
+}
+
+@media only screen and (max-width: 980px) {
+    .right-of-menu {
+      margin-left: 60px;
+    }
+    .top-bar {
+        padding-left: 50px;
+    }
+  }
