@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Workout Tracker</title>
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
+	<link rel="stylesheet" href="css/theme.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+    <script src="js/w3script.js"></script>
+    <script src="https://www.w3schools/com/lib/w3.js"></script>
+</head>
+
+<body class="w3-theme-d4">
+	<!-- Sidebar -->
+    <nav
+      class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left w3-col m3"
+      style="width: 300px"
+      id="Sidebar"
+    >
+      <button class="w3-bar-item w3-button w3-hide-large" onclick="w3_close()">
+        Close &times;
+      </button>
+      <div class="app-title">
+        <img src="images/logo.png" class="logo" />
+        <span id="app-title-header"><h1>Fittr</h1></span>
+      </div>
+
+      <div id="menu">
+        <ul>
+          <li>
+            <span class="menu-item"><a href="home.html">Home</a></span>
+          </li>
+          <li>
+            <span class="menu-item"><a href="bmi.html">BMI & Weight</a></span>
+          </li>
+          <li>
+            <span class="menu-item"
+              ><a href="calories.html">Food & Calories</a></span
+            >
+          </li>
+          <li>
+            <span class="menu-item"><a href="steps.html">Step Tracker</a></span>
+          </li>
+          <li>
+            <span class="menu-item"
+              ><a href="sleep.html">Sleep Tracker</a></span
+            >
+          </li>
+          <li>
+            <span class="menu-item"
+              ><a href="workouts.html">Workout Tracker</a></span
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main contents -->
+    <div class="w3-col" style="width: 25%">
+      <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
+    </div>
+
+    <div class="top-bar">
+        <h3><a href="home.html">Home</a></h3>
+        <h3><a href="profile.html">Edit Profile</a></h3>
+        <h3><a href="search.html">Search Users</a></h3>
+        <h3><a href="notifications.html">Notif Settings</a></h3>
+    </div>
+	
+    <main class="w3-container w3-col w3-mobile" style="width:50%">
+		<div class="graph-container" style="width:600px">
+
+			<h2>Weekly Workout History</h2>
+			
+			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
+
+            <!-- {"name": STRING, "sets": INT, "reps": INT, "weight": INT in lbs, "time": INT in minutes, "sex": "male" or "female", "bodyWeight":  INT in kg} -->
+
+            <form id="woForm">
+                <h2>Add workout for today:</h2>
+                <label for="name">Name of workout: </label>
+                <input type="text"  id="name" name="name"/><br />
+                <label for="sets">Sets: </label>
+                <input type="number"  id="sets" name="sets"/><br />
+                <label for="reps">Reps: </label>
+                <input type="number"  id="reps" name="reps"/><br />
+                <label for="weight">Weight(Lbs): </label>
+                <input type="number"  id="weight" name="weight"/><br />
+                <label for="time">Time(Min): </label>
+                <input type="number"  id="time" name="time"/><br />
+                <label for="sex">Sex: </label>
+                <select  id="sex" name="sex">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select><br />
+                <label for="bodyWeight">Body Weight (Kg): </label>
+                <input type="number"  id="bodyWeight" name="bodyWeight"/><br />
+                <input type="submit" hidden/>
+            </form>
+
+			<p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
+
+            <h2 id="work_dsp">Calories burned today: </h2>
+
+            <h2 id="work_dsp2">Tons Lifted today: </h2>
+
+            <h2>Monthly Workout History</h2>
+
+            <canvas id="monthChart" style="width:100%;max-width:600px;;" ></canvas>
+
+            <script src="js/workouts.js"></script>
+			
+		</div>
+		<br>
+		
+		<!--<div id="tracker-row">
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
+
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
+
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
+		</div>-->
+		
+	</main>
+	
+</body>
+</html>

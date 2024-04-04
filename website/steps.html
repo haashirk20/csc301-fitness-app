@@ -1,26 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Title -->
-  <title>Calorie Counting</title>
-  
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
-  <link rel="stylesheet" href="css/theme.css"/>
-  <link rel="stylesheet" href="css/style.css" />
+	<title>Step Tracker</title>
 
-  <!-- Design Scripts -->
-  <script src="js/w3script.js"></script>
-  <script src="https://www.w3schools/com/lib/w3.js"></script>
-  </head>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css"/>
+	<link rel="stylesheet" href="css/theme.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-  <body class="w3-theme-d4">
-    <!-- Sidebar -->
+    <script src="js/w3script.js"></script>
+    <script src="https://www.w3schools/com/lib/w3.js"></script>
+</head>
+
+<body class="w3-theme-d4">
+	<!-- Sidebar -->
     <nav
       class="w3-sidebar w3-bar-block w3-collapse w3-card w3-theme w3-animate-left w3-col m3"
       style="width: 300px"
@@ -75,28 +71,47 @@
         <h3><a href="search.html">Search Users</a></h3>
         <h3><a href="notifications.html">Notif Settings</a></h3>
     </div>
+	
+    <main class="w3-container w3-col w3-mobile" style="width:50%">
+		<div class="graph-container" style="width:600px">
+			<h2>Weekly Step History</h2>
+			
+			<canvas id="weekChart" style="width:100%;max-width:600px;padding-bottom: 10px;" ></canvas>
 
-    <main class="w3-container w3-col w3-mobile" id="main" style="width:50%">
+            <form id="stForm">
+                <label for="steps">Add steps for today:</label>
+                <input type="number"  id="steps" name="steps"/><br />
+                <input type="submit" hidden/>
+            </form>
 
-      <div class="graph-container">
-        <h2>User Search</h2>
+			<p id="errMessage" style="display:none"> [PLACE HOLDER] </p> 
 
-        <form id="searchForm" method="post">
-            <p>Enter the name of a user to search.</p>
-            <label for="food_name">Username: </label>
-            <input type="text" id="query" name="query"><br><br>
-            <input type="submit" />
-        </form>
+            <h2 id="step_dsp">Steps today: </h2>
 
-        <h2 id="search_result"></h2>
-      </div>
+            <h2>Monthly Step History</h2>
 
-      <div id="search-results-holder">
+            <canvas id="monthChart" style="width:100%;max-width:600px;;" ></canvas>
 
-      </div>
+            <script src="js/steps.js"></script>
+			
+		</div>
+		<br>
+		
+		<!--<div id="tracker-row">
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
 
-    </main>
-  </body>
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
 
-  <script src="js/search.js"></script>
+			<span class="tracker">
+				<h2>Step Tracker</h2>
+			</span>
+		</div>-->
+		
+	</main>
+	
+</body>
 </html>

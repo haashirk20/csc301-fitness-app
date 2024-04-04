@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Title -->
     <title>Fitness App</title>
 
-    <!-- CSS Links -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css" />
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- JavaScript Links -->
-    <script src="js/home.js"></script>
     <script src="js/w3script.js"></script>
-    <script src="https://www.w3schools/com/lib/w3.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
 
   <body class="w3-theme-d4">
@@ -76,67 +71,33 @@
         <h3><a href="notifications.html">Notif Settings</a></h3>
     </div>
 
-    <!-- TODO: Replace CSS classes with Responsive Equivalent -->
-    <main class="right-of-menu">
-
+    <main class="w3-container w3-col w3-mobile" style="width: 50%">
       <div class="graph-container">
-        <h2><a href="profile.html">Your Profile</a></h2>
+        <h1>Daily Notifications</h1>
 
-        <p>Edit your username, email address, and age.</p>
-      </div>
-
-      <div class="graph-container">
-        <h2><a href="search.html">Find Other Users</a></h2>
-
-        <p>
-          Search other users by username so you can find your friends and
-          compare goals.
+        <p style="font-size: 16px">
+          Set the time you would like to receive daily notifications. You will
+          receive a notification at the same time every day about your set goals
+          and metrics.
         </p>
-      </div>
 
-      <div class="graph-container">
-        <h2><a href="bmi.html">BMI & Weight</a></h2>
-
-        <p>
-          Check your weight and calculate your recommended caloric intake for
-          your weight goals.
+        <p style="font-size: 18px">
+          Your current notification time: <span id="currTime">Not set</span>
         </p>
-      </div>
 
-      <div class="graph-container">
-        <h2><a href="calories.html">Food & Calories</a></h2>
+        <form id="notiForm" method="post">
+          <label for="newTime" style="font-size: 18px"
+            >When would you like to receive daily notifications?</label
+          ><br /><br />
+          <input type="time" id="newTime" name="newTime" /><br /><br />
+          <input type="submit" />
+        </form>
 
-        <p>
-          Set calorie goals and track your food calorie intake to meet them.
-        </p>
-      </div>
+        <p style="font-size: 16px">Result: <span id="noti_result"></span></p>
 
-      <div class="graph-container">
-        <h2><a href="steps.html">Step Tracker</a></h2>
-
-        <p>Enter your steps and track your step progress over time.</p>
-      </div>
-
-      <div class="graph-container">
-        <h2><a href="sleep.html">Sleep Tracker</a></h2>
-
-        <p>Set sleep goals and track your sleep schedule over time.</p>
-      </div>
-
-      <div class="graph-container">
-        <h2><a href="workouts.html">Workout Tracker</a></h2>
-
-        <p>
-          Track your workout plans and calories burned and view your progress
-          over time.
-        </p>
-      </div>
-
-      <div class="graph-container">
-        <h2><a href="notifications.html">Notification Settings</a></h2>
-
-        <p>Set daily notification reminders to help you meet your goals.</p>
+        <h2 id="profile_result"></h2>
       </div>
     </main>
   </body>
+  <script src="js/notifications.js"></script>
 </html>

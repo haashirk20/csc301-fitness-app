@@ -11,6 +11,7 @@ cryptography==42.0.2
 dill==0.3.8
 firebase-admin==6.4.0
 flask==3.0.1
+flask_cors==3.0.10
 flask_bcrypt==1.0.1
 google-api-core==2.16.1
 google-api-python-client==2.116.0
@@ -51,3 +52,4 @@ uritemplate==4.1.1
 urllib3==2.2.0
 werkzeug==3.0.1
 zipp==3.17.0
+schedule==1.2.0

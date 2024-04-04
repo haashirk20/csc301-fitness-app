@@ -1,9 +1,10 @@
 import os
 import flask
 import firebase_admin
-from firebase_admin import credentials, db
+from firebase_admin import credentials
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
+from threading import Thread
 
 app = flask.Flask(__name__)
 
@@ -11,7 +12,12 @@ app.config.update(
     SESSION_COOKIE_SECURE="False",
     SESSION_COOKIE_SAMESITE="None",
 )
-CORS(app, origins=["http://127.0.0.1:5501"], supports_credentials=True)
+CORS(
+    app,
+    # below is the front end url
+    origins=["http://127.0.0.1:5500", "http://127.0.0.1:5501"],
+    supports_credentials=True,
+)
 
 SECRET_KEY = "batman"  # TODO: put in .env file
 app.secret_key = SECRET_KEY
@@ -33,4 +39,9 @@ def initialize_firebase_app():
 
 initialize_firebase_app()
 
-from app import models, routes  # placed here to avoid circular imports
+from app.utils import reminders
+thread = Thread(target=reminders.reminder)
+thread.daemon = True
+thread.start()
+
+from app import routes  # placed down here to avoid circular imports
