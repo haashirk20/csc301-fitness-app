@@ -6,7 +6,7 @@ setTimeout(() => {
   })
     .then((response) => {
       if (response.status === 401) {
-        window.location.href = "/login.html";
+        window.location.href = "/website/login.html";
       } else {
         // Handle the successful response here
       }
