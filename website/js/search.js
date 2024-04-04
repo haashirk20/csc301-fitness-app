@@ -55,10 +55,10 @@ if (search_Form) {
         tag.appendChild(text);
 
         //email
-        tag = document.createElement("p");
-        user.appendChild(tag);
-        text = document.createTextNode(result.results[2][i])
-        tag.appendChild(text);
+        // tag = document.createElement("p");
+        // user.appendChild(tag);
+        // text = document.createTextNode(result.results[2][i])
+        // tag.appendChild(text);
 
         //calorie goal
         tag = document.createElement("p");
