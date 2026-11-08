@@ -1,75 +1,78 @@
-# CSC301 Fitness App
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme/hero-light.svg">
+    <img src="assets/readme/hero-dark.svg" width="880" alt="CSC301 Fitness App: 7 API routes, 5 activity levels, bcrypt-hashed passwords, built by 6 teammates. An example calorie page shows 1,820 kcal left of a 2,720 kcal daily target.">
+  </picture>
+</p>
 
-A fitness web app with accounts, a daily calorie budget based on the Mifflin-St Jeor equation, and a BMI calculator. It has a Flask API, a Firebase database and a Bootstrap frontend.
+<p align="center">
+  <strong>A fitness web app with accounts, a daily calorie budget and a BMI calculator.</strong><br>
+  <strong>Mifflin-St Jeor targets &middot; per-user calorie tracking &middot; BMI categories</strong><br>
+  <sub>Flask API, Firebase Realtime Database and a Bootstrap frontend, built by a student team for CSC301.</sub>
+</p>
 
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-3.0-000000?logo=flask&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-Realtime%20DB-FFCA28?logo=firebase&logoColor=black)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
-
-## Demo
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-00006D?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Flask-3.0-00006D?style=flat-square&logo=flask&logoColor=white" alt="Flask 3.0">
+  <img src="https://img.shields.io/badge/Firebase-Realtime%20DB-00006D?style=flat-square&logo=firebase&logoColor=white" alt="Firebase Realtime Database">
+  <img src="https://img.shields.io/badge/Bootstrap-00006D?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap">
+</p>
 
 <!-- TODO: demo link or video -->
 
-![image](https://github.com/user-attachments/assets/aeb8bcd3-7f6d-4f10-89fe-741a4b698751)
-![image](https://github.com/user-attachments/assets/9be50574-e76c-45c7-af40-a1507004e6a2)
-![image](https://github.com/user-attachments/assets/268a6a6e-c24b-4536-aa85-ffd6ba184709)
-![image](https://github.com/user-attachments/assets/3d3a6488-25a9-4847-844d-48269d6b7bb6)
-![image](https://github.com/user-attachments/assets/abc9a219-3fac-41f6-8702-cc59c3412552)
-![image](https://github.com/user-attachments/assets/fe6f3458-6ac2-43eb-b77f-eb3d9699efff)
+---
 
-## Overview
+Users sign up, log in, and enter their age, sex, height, weight, activity level and goal. The app works out how many calories they need per day and stores that with their account. They can log calories as they eat, see what's left, and reset the count. A separate page calculates BMI and its category (underweight, healthy weight, overweight or obesity). The team split the work into tickets and user stories and merged it through pull requests.
 
-Users sign up, log in, and enter their age, sex, height, weight, activity level and goal. The app works out how many calories they need per day and stores that with their account. They can log calories as they eat, see what's left, and reset the count. A separate page calculates BMI and its category. The project was built by a team of students for CSC301, with work split into tickets and user stories and merged through pull requests.
+## The daily target
 
-## Key features
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/calories-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme/calories-light.svg">
+    <img src="assets/readme/calories-dark.svg" width="880" alt="Daily target in three steps: the Mifflin-St Jeor BMR, an activity multiplier from 1.2 to 1.9, and a goal adjustment of +500 kcal to gain or 80% to lose. Worked example: a 25-year-old male, 180 cm, 75 kg, moderately active, maintaining: BMR 1,755 times 1.55 equals 2,720 kcal a day.">
+  </picture>
+</p>
 
-- Sign-up and login with bcrypt-hashed passwords and unique usernames, plus Flask sessions so later API calls know who is signed in.
-- Daily calorie target using the Mifflin-St Jeor BMR equation, five activity multipliers (1.2 to 1.9), and a goal adjustment: +500 kcal to gain, 80% of maintenance to lose.
-- Calorie tracking per user: log calories eaten, see what's left, and reset.
-- BMI calculator with categories (underweight, healthy weight, overweight, obesity).
-- Server-side input checks that return a specific 400 message for each missing or invalid field.
+`app/calorie.py` computes the basal metabolic rate with the Mifflin-St Jeor equation, multiplies it by one of five activity levels (sedentary 1.2 up to extra active 1.9), then adjusts for the goal: +500 kcal to gain, 80% of maintenance to lose. The result is saved with the user, and each logged meal subtracts from what's left.
 
-## Tech stack
+The calculation code (`calorie.py`, `calculators.py`) is plain functions with no Flask or Firebase imports. Routes validate input, call these functions and store the result.
 
-| Area | Tools |
-|---|---|
-| Backend | Python, Flask 3, Flask-Bcrypt, Flask-CORS |
-| Database | Firebase Realtime Database (`firebase-admin`) |
-| Frontend | HTML, Bootstrap, vanilla JavaScript (`fetch`) |
-| Tooling | pylint, Black |
+## API
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/api-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme/api-light.svg">
+    <img src="assets/readme/api-dark.svg" width="880" alt="API routes: POST /api/signup, POST /api/login, GET and POST /api/calories, POST /api/calories/reduce, POST /api/calories/reset, POST /api/bmi.">
+  </picture>
+</p>
+
+Every route except signup and login returns 401 if no one is signed in. Server-side input checks return a specific 400 message for each missing or invalid field. Signup and login use bcrypt-hashed passwords and unique usernames, and Flask sessions let later calls know who is signed in.
 
 ## Architecture
 
-The static frontend in `website/` calls the Flask API with `fetch`, sending the session cookie with each request. Flask handles auth and calculations and reads and writes user records in Firebase.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/architecture-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme/architecture-light.svg">
+    <img src="assets/readme/architecture-dark.svg" width="880" alt="Architecture: the static website calls the Flask API, which uses the calculator functions and the User model, which reads and writes Firebase Realtime Database.">
+  </picture>
+</p>
 
-```mermaid
-flowchart LR
-    ui["website/<br/>login, signup, home, bmi pages"] -- "fetch, session cookie" --> api["Flask API<br/>app/routes.py"]
-    api --> models["app/models.py<br/>User: signup, login, calories"]
-    api --> calc["app/calorie.py<br/>app/calculators.py"]
-    models --> fb[("Firebase Realtime DB<br/>users/")]
-```
+The static frontend in `website/` calls the Flask API with `fetch`, sending the session cookie with each request. The `User` model wraps all Firebase access: signup and login look users up with an `order_by_child("name").equal_to(...)` query, and passwords are only ever stored as bcrypt hashes. The Firebase app is created once at import time and guarded by `firebase_admin._apps`, so reloads in debug mode don't try to initialise it twice.
 
-API routes:
+## Screenshots
 
-| Method | Route | Purpose |
-|---|---|---|
-| POST | `/api/signup` | Create an account |
-| POST | `/api/login` | Log in and start a session |
-| GET | `/api/calories` | Daily target and calories remaining |
-| POST | `/api/calories` | Calculate and save the daily target |
-| POST | `/api/calories/reduce` | Log calories eaten |
-| POST | `/api/calories/reset` | Reset calories remaining to the target |
-| POST | `/api/bmi` | Calculate BMI |
-
-Every route except signup and login returns 401 if no one is signed in.
-
-## Technical highlights
-
-- The calculation code (`calorie.py`, `calculators.py`) is plain functions with no Flask or Firebase imports. Routes validate input, call these functions and store the result.
-- The `User` model wraps all Firebase access. Signup and login look users up with an `order_by_child("name").equal_to(...)` query, and passwords are only ever stored as bcrypt hashes.
-- The Firebase app is created once at import time and guarded by `firebase_admin._apps`, so reloads in debug mode don't try to initialise it twice.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aeb8bcd3-7f6d-4f10-89fe-741a4b698751" width="420" alt="App screenshot">
+  <img src="https://github.com/user-attachments/assets/9be50574-e76c-45c7-af40-a1507004e6a2" width="420" alt="App screenshot">
+  <img src="https://github.com/user-attachments/assets/268a6a6e-c24b-4536-aa85-ffd6ba184709" width="420" alt="App screenshot">
+  <img src="https://github.com/user-attachments/assets/3d3a6488-25a9-4847-844d-48269d6b7bb6" width="420" alt="App screenshot">
+  <img src="https://github.com/user-attachments/assets/abc9a219-3fac-41f6-8702-cc59c3412552" width="420" alt="App screenshot">
+  <img src="https://github.com/user-attachments/assets/fe6f3458-6ac2-43eb-b77f-eb3d9699efff" width="420" alt="App screenshot">
+</p>
 
 ## Getting started
 
